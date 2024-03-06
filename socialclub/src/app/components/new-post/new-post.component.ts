@@ -19,8 +19,8 @@ import { Router } from '@angular/router';
 })
 export class NewPostComponent implements AfterViewInit {
   username: string = sessionStorage.getItem('username') || ''; // Change this to the actual user ID
-  caption: string = '';
-  location: string = '';
+  caption: string;
+  location: string;
   mediaFiles: File[] = [];
   mediaPreviews: { url: SafeUrl; type: string }[] = [];
   errorMessage: string = '';
@@ -98,20 +98,21 @@ export class NewPostComponent implements AfterViewInit {
       formData.append('image_or_video', file, file.name);
     });
 
-    alert(`Added a new shout successfully!!`);
-    this.router.navigate(['/home']);
+    // alert(`Added a new shout successfully!!`);
+    // this.router.navigate(['/home']);
 
-    console.log('Submitted FormData:', formData);
+    console.log('Submitting FormData:', formData);
+    console.log(this.location);
 
     // Call the service to send the data to the Django backend
     this.newPostService.postData(formData).subscribe(
       (response) => {
         console.log(response.message);
         // Reset form fields on successful submission if needed
-        this.caption = '';
-        this.location = '';
-        this.mediaFiles = [];
-        this.mediaPreviews = [];
+        // this.caption = '';
+        // this.location = '';
+        // this.mediaFiles = [];
+        // this.mediaPreviews = [];
       },
       (error) => {
         console.error(error);

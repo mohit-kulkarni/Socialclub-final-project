@@ -42,10 +42,15 @@ export class AsideDataComponent implements OnInit {
         this.users = data;
         // After fetching users, check if each user is a friend
         this.users.forEach((user: User) => {
-          this.friendRequestService.checkIsFriend(user.id).subscribe(
+          this.friendRequestService.checkIsFriend(user.user).subscribe(
             (isFriend) => {
               user.isFriend = isFriend;
-              console.log(isFriend);
+              // console.log(isFriend);
+              // console.log(user);
+
+              // console.log(
+              //   `Friendship status for user: ${user.username} is: ${isFriend}`
+              // );
               this.filterFriends();
             },
             (error) => {
@@ -62,7 +67,7 @@ export class AsideDataComponent implements OnInit {
 
   filterFriends(): void {
     this.users = this.users.filter((user: User) => !user.isFriend);
-    console.log('Not Friends: ', this.users);
+    // console.log('Not Friends: ', this.users);
   }
 
   sendFollowRequest(toUserId: number): void {

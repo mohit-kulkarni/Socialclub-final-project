@@ -10,6 +10,7 @@ import { postsComponent } from './components/posts/posts.component';
 import { postHeaderComponent } from './components/posts/post-header/post-header.component';
 import { PostFooterComponent } from './components/posts/post-footer/post-footer.component';
 import { postImageComponent } from './components/posts/post-image/post-image.component';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommentService } from './services/comment.service';
