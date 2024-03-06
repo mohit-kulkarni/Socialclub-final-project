@@ -37,7 +37,7 @@ const routes: Routes = [
         component: ProfileComponent,
         canActivate: [AuthGuard],
       },
-      { path: 'report', component: ReportComponent },
+      { path: 'report/:id', component: ReportComponent },
     ],
   },
   { path: '', redirectTo: 'join', pathMatch: 'full' }, // Default route

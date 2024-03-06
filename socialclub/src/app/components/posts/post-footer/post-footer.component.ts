@@ -62,7 +62,7 @@ export class PostFooterComponent implements OnInit {
   }
   redirectToReportForm() {
     // Navigate to the report form component
-    this.router.navigate(['/report']);
+    this.router.navigate(['/report',this.postId]);
   }
   submitComment() {
     alert('Comment posted successfully!');
