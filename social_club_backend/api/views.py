@@ -176,17 +176,17 @@ class PostListCreate(generics.ListCreateAPIView):
     
     permission_classes = [AllowAny]
     
-    def get(self, request, *args, **kwargs,):
-        queryset = self.get_queryset()
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
+    # def get(self, request, *args, **kwargs,):
+    #     queryset = self.get_queryset()
+    #     serializer = self.serializer_class(queryset, many=True)
+    #     return Response(serializer.data)
 
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def post(self, request, *args, **kwargs):
+    #     serializer = self.serializer_class(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
 
@@ -329,28 +329,31 @@ def list_friendships(request):
     serializer = FriendshipSerializer(friendships, many=True)
     return Response(serializer.data) 
 
-# class IsFriendAPIView(APIView):
-#     permission_classes = [IsAuthenticated]
+class IsFriendAPIView(APIView):
+    permission_classes = [IsAuthenticated]
 
-#     def get(self, request, user_id):
-#         from_user_id = request.user.id
-#         # Check if there is a friendship between the two users
-#         is_friend = Friendship.objects.filter(
-#             (Q(user1_id=from_user_id) & Q(user2_id=user_id)) |
-#             (Q(user1_id=user_id) & Q(user2_id=from_user_id))
-#         ).exists()
+    def get(self, request, user_id):
+        from_user_id = request.user.id
+        # Check if there is a friendship between the two users
+        print(user_id)
+        is_friend = Friendship.objects.filter(
+            (Q(user1_id=from_user_id) & Q(user2_id=user_id)) |
+            (Q(user1_id=user_id) & Q(user2_id=from_user_id))
+        ).exists()
+        # print(from_user_id, "<==")
+        # print(user_id, "=>", is_friend)
 
-#         return Response({'is_friend': is_friend}, status=status.HTTP_200_OK)
+        return Response(is_friend, status=status.HTTP_200_OK)
     
-@api_view(['GET'])
-def check_is_friend_batch(request):
-    user_ids = request.GET.getlist('user_ids[]')
-    friend_statuses = {}
-    for user_id in user_ids:
-        # Check if the user is a friend of the authenticated user
-        is_friend = Friendship.objects.filter(from_user=request.user, to_user_id=user_id).exists()
-        friend_statuses[user_id] = is_friend
-    return Response(friend_statuses)
+# @api_view(['GET'])
+# def check_is_friend_batch(request):
+#     user_ids = request.GET.getlist('user_ids[]')
+#     friend_statuses = {}
+#     for user_id in user_ids:
+#         # Check if the user is a friend of the authenticated user
+#         is_friend = Friendship.objects.filter(from_user=request.user, to_user_id=user_id).exists()
+#         friend_statuses[user_id] = is_friend
+#     return Response(friend_statuses)
 
 ################ COMMENT ##################
 

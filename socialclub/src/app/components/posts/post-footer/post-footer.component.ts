@@ -84,13 +84,13 @@ export class PostFooterComponent implements OnInit {
     );
   }
 
-  private fetchComments() {
+  fetchComments() {
     const postId = this.postId;
     this.commentService.getComments(postId).subscribe(
       (data) => {
         // Assuming your comments are stored as strings, adjust based on your actual data structure
         this.commentsWithUsername = []; // Clear the array before fetching new comments
-        console.log('data', data);
+        console.log('comments for', postId, data);
 
         data.forEach((comment) => {
           // Fetch the username for each comment
@@ -103,7 +103,6 @@ export class PostFooterComponent implements OnInit {
             this.commentsWithUsername.push(commentWithUsername);
           });
         });
-
       },
       (error) => {
         console.error('Error fetching comments:', error);

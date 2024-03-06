@@ -8,6 +8,7 @@ from api.models import *
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = [
             'username',
+            'id',
             'fname',
             'lname',
             'email',
