@@ -28,6 +28,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = [
             'username',
             'caption', 
+            'location',
             'id',
     ]
 
