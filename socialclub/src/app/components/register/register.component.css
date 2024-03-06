@@ -1,0 +1,74 @@
+.form-bg {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.custom-header {
+  font-size: 30px;
+  text-align: center;
+}
+
+form {
+  background: linear-gradient(to right, #3498db, #8e44ad);
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form p-card {
+  background: linear-gradient(to right, #ffffff, #f1f1f1);
+  border-radius: 8px;
+  padding: 30px;
+  margin: 10px;
+}
+form p-card .field {
+  margin-bottom: 15px;
+}
+form p-card .field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+form p-card .field input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+form p-card .field input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+form p-card .field small {
+  margin-top: 5px;
+  font-size: 12px;
+}
+form p-card button {
+  width: 100%;
+  margin-top: 15px;
+  background-color: hsl(224, 60%, 53%);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: medium;
+  border: none;
+}
+form p-card button:hover {
+  background-color: hsl(224, 90%, 53%);
+}
+form p-card .mt-2 {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #777;
+}
+form p-card .mt-2 a {
+  color: #3498db;
+  text-decoration: none;
+}
+form p-card .mt-2 a:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=register.component.css.map */

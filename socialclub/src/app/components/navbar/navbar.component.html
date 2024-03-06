@@ -1,0 +1,201 @@
+<div class="sidebar-nav">
+  <nav id="navbar">
+    <div class="img-logo">
+      <a href="login">
+        <img [src]="logoSource" alt="socialclub - Logo" width="200px" />
+      </a>
+    </div>
+
+    <!-- <div class="search-area">
+      <app-search></app-search>
+    </div> -->
+
+    <div class="navigation">
+      <div class="navigation-navbar">
+        <div class="navigation-navbar-item" routerLink="home">
+          <div class="nav-item-logo">
+            <svg
+              aria-label="Home"
+              class="_8-yf5"
+              fill="#262626"
+              height="22"
+              viewBox="0 0 48 48"
+              width="22"
+            >
+              <path
+                d="M45.5 48H30.1c-.8 0-1.5-.7-1.5-1.5V34.2c0-2.6-2.1-4.6-4.6-4.6s-4.6 2.1-4.6 4.6v12.3c0 .8-.7 1.5-1.5 1.5H2.5c-.8 0-1.5-.7-1.5-1.5V23c0-.4.2-.8.4-1.1L22.9.4c.6-.6 1.6-.6 2.1 0l21.5 21.5c.3.3.4.7.4 1.1v23.5c.1.8-.6 1.5-1.4 1.5z"
+              ></path>
+            </svg>
+          </div>
+          <div class="nav-item-name">Home</div>
+        </div>
+
+        <div class="navigation-navbar-item" (click)="showSearch()">
+          <div class="nav-item-logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+              />
+            </svg>
+          </div>
+          <div class="nav-item-name">Search</div>
+        </div>
+        <app-search *ngIf="showSearchComponent" />
+
+        <div class="navigation-navbar-item" routerLink="new-post">
+          <div class="nav-item-logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              fill="#262626"
+              class="bi bi-plus-lg"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+              />
+            </svg>
+          </div>
+          <div class="nav-item-name">Create</div>
+        </div>
+        <div class="navigation-navbar-item" routerLink="explore">
+          <div class="nav-item-logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="#262626"
+              class="bi bi-people-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"
+              />
+            </svg>
+          </div>
+          <div class="nav-item-name">Notifications</div>
+        </div>
+
+        <div class="navigation-navbar-item" routerLink="profile">
+          <div class="nav-item-logo">
+            <img
+              [src]="userImageSource"
+              alt="User image"
+              id="navigation-user-image"
+            />
+          </div>
+          <div class="nav-item-name">Profile</div>
+        </div>
+      </div>
+
+      <!-- <div class="navigation-navbar-item">
+          <div class="user-profile nav-item-logo" (click)="toggleDropdown()">
+            <img
+              [src]="userImageSource"
+              alt="User image"
+              id="navigation-user-image"
+            />
+          </div>
+
+          <div class="nav-item-name">Profile</div>
+
+          <p-dropdown
+            *ngIf="isDropdownVisible"
+            [options]="items"
+            [(ngModel)]="selectedItem"
+          >
+            <ng-template let-item pTemplate="item">
+              <a [routerLink]="item.routerLink">
+                <span>{{ item.label }}</span>
+              </a>
+            </ng-template>
+          </p-dropdown>
+        </div> 
+      </div> -->
+      <div class="nav-more">
+        <div class="navigation-navbar">
+          <div class="navigation-navbar-item">
+            <div class="nav-item-logo">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                fill="currentColor"
+                class="bi bi-list"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+                />
+              </svg>
+            </div>
+            <div class="nav-item-name" (click)="logoutUser()">
+              Logout
+            </div>
+            <!-- <div class="dropdown-menu">Logout</div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- ---------- Dynamic code (NOT WORKING) ---------- -->
+
+<!-- <div class="sidebar-nav">
+  <nav id="navbar">
+    <div class="img-logo">
+      <a href="login">
+        <img [src]="instagramLogoSource" alt="Instagram - Logo" width="200px" />
+      </a>
+    </div>
+
+    <div class="search-area">
+      <app-search></app-search>
+    </div>
+    <div class="navigation">
+      <ul class="navigation-navbar">
+        <li
+          *ngFor="
+            let item of [
+              { routerLink: 'home', name: 'Home', icon: 'house-door' },
+              { routerLink: 'new-post', name: 'Create', icon: 'plus' },
+              { routerLink: 'explore', name: 'Notifications', icon: 'bell' },
+              { routerLink: 'profile', name: 'Profile', icon: 'person' }
+            ]
+          "
+          class="navigation-navbar-item"
+          routerLinkActive="[routerLinkActive]"
+          [class.nav-item-active]="isActive(item.routerLink)"
+        >
+          <div class="nav-item-logo">
+            <i
+              *ngIf="isActive(item.routerLink)"
+              class="bi bi-{{ item.icon }}"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            ></i>
+            <i
+              *ngIf="!isActive(item.routerLink)"
+              class="bi bi-{{ item.icon }}"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            ></i>
+          </div>
+
+          <div class="nav-item-name">{{ item.name }}</div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div> -->

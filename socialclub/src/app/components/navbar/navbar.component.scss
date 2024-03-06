@@ -1,0 +1,113 @@
+$navbar-padding: 5px 60px;
+$main-background-color: #ffffff;
+$app-background-color: #f7f7f7;
+
+.sidebar-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  //   width: 300px; /* Adjust width as needed */
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  padding: 12px;
+  font-weight: 400;
+
+  #navbar {
+    min-height: 54px;
+    height: 100%;
+    background: $main-background-color;
+    // border-bottom: 1px solid #dbdbdb;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: flex-start;
+    // padding: $navbar-padding;
+    // position: fixed;
+    top: 0;
+    z-index: 10000;
+
+    .img-logo {
+      align-self: flex-start;
+      margin: 30px 0px;
+    }
+
+    .search-area {
+      //   flex-grow: 1;
+      display: flex;
+      justify-content: center;
+
+      #search {
+        border: 1px solid #dbdbdb;
+        background-color: $app-background-color;
+        outline: none;
+        border-radius: 3px;
+        height: 28px;
+        font-size: 14px;
+        width: 300px;
+        padding: 0 5px;
+        text-align: center;
+
+        &::placeholder {
+          text-align: center;
+        }
+      }
+    }
+
+    .navigation {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      width: 100%;
+
+
+      
+      .navigation-navbar {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: flex-start;
+        font-size: 1rem;
+        width: 100%;
+
+        .navigation-navbar-item {
+          padding: 12px;
+          margin: 4px 0px;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          cursor: pointer;
+          width: 100%;
+          border-radius: 10px;
+
+          &:hover {
+            background-color: #f2f2f2;
+
+            svg {
+              transform: scale(1.1);
+            }
+          }
+
+          &:active {
+            font-weight: bold;
+          }
+          .nav-item-name {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  #navigation-user-image {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

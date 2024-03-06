@@ -1,0 +1,382 @@
+<!-- <div class="form-bg">
+
+  <form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
+    <p-card
+    [style]="{ width: '360px' }"
+    class="register-card"
+  >
+    <ng-template pTemplate="header">
+      <div class="custom-header"><b>Register</b></div>
+    </ng-template>
+    Your card content goes here
+  
+      <div class="field">
+        <label for="username">username</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="username"
+          class="w-full"
+          name="username"
+          placeholder="Type your name"
+        />
+        <small
+          *ngIf="username.invalid && (username.dirty || username.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="username.errors?.['required']">Name is required.</div>
+          <div *ngIf="username.errors?.['pattern']">Enter a valid Name</div>
+        </small>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="email"
+          class="w-full"
+          name="email"
+          placeholder="Type your email"
+        />
+        <small
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Email should be valid</div>
+        </small>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          pInputText
+          formControlName="password"
+          class="w-full"
+          name="password"
+          placeholder="Type your password"
+        />
+        <small
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="password.errors?.['required']">Password is required.</div>
+        </small>
+      </div>
+      <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          pInputText
+          formControlName="confirmPassword"
+          class="w-full"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+        />
+        <small
+          *ngIf="
+            confirmPassword.invalid &&
+            (confirmPassword.dirty || confirmPassword.touched)
+          "
+          class="block p-error"
+        >
+          <div *ngIf="confirmPassword.errors?.['required']">
+            Confirm the password
+          </div>
+        </small>
+        <small
+          class="block p-error"
+          *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+        >
+          Password should match
+        </small>
+      </div>
+      <button
+        pButton
+        class="p-button-info"
+        [disabled]="registerForm.invalid"
+        type="submit"
+      >
+        Register
+      </button>
+      <div class="mt-2">Already a member? <a routerLink="/login">Login</a></div>
+    </p-card>
+  </form>
+</div> -->
+
+<section class="">
+  <div class="col-md-9 col-lg-6 col-xl-5"></div>
+  <div class="form-bg">
+    <img
+      src="../../../assets/img/signup2.svg"
+      class="col-lg-6 img-fluid signup-img"
+      alt="Sample image"
+    />
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="submitDetails()"
+      enctype="multipart/form-data"
+    >
+      <p-card [style]="{ width: '460px' }" class="register-card">
+        <ng-template pTemplate="header">
+          <div class="custom-header"><b>Register</b></div>
+        </ng-template>
+        <!-- Your card content goes here -->
+
+        <div class="row" id="img-preview">
+          <!-- <img src="../../../assets/img/{{ showUserImg }}" alt="temp" />
+        </div>
+        <div class="row text-center">
+          <div id="img-preview"></div> -->
+          <div class="field">
+            <label for="userImg">Choose Profile Picture</label>
+            <input
+              type="file"
+              id="userImg"
+              name="userImg"
+              accept="image/*"
+              (change)="onFileSelected($event)"
+              style="background-color: white"
+            />
+          </div>
+          <div class="field">
+            <img
+              [src]="showUserImg"
+              *ngIf="showUserImg"
+              alt="User Image Preview"
+              class="img-preview"
+            />
+          </div>
+          <i class="bi bi-person-circle"></i>
+          <!-- <label for="userImg">Choose Profile Picture</label> -->
+        </div>
+
+        <div class="field">
+          <i class="fas fa-user"></i>
+          <input
+            type="text"
+            placeholder="Enter First Name"
+            formControlName="fname"
+          />
+        </div>
+        <small
+          *ngIf="registerForm.get('fname').errors?.['required'] && registerForm.get('fname').touched"
+        >
+          *First name is required field
+        </small>
+
+        <div class="field">
+          <i class="fas fa-user"></i>
+          <input
+            type="text"
+            placeholder="Enter Last Name"
+            required
+            formControlName="lname"
+          />
+        </div>
+        <small
+          *ngIf="registerForm.get('lname').errors?.['required'] && registerForm.get('lname').touched"
+        >
+          *Last name is required field
+        </small>
+
+        <div class="row">
+          <div class="col-8">
+            <div class="field">
+              <i class="fas fa-id-card"></i>
+              <input
+                type="text"
+                placeholder="Username"
+                required
+                formControlName="username"
+              />
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="input-box">
+              <button
+                class="generate-button"
+                type="button"
+                (click)="GenerateUserName()"
+                [disabled]="
+                  !(
+                    registerForm.get('fname').value &&
+                    registerForm.get('lname').value
+                  )
+                "
+              >
+                Generate
+              </button>
+            </div>
+          </div>
+          <small
+            *ngIf="registerForm.get('username').errors?.['required'] && registerForm.get('username').touched"
+          >
+            *Username is required field
+          </small>
+        </div>
+
+        <!-- <div class="field">
+          <label for="username">username</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="username"
+            class="w-full"
+            name="username"
+            placeholder="Type your name"
+          />
+          <small
+            *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="username.errors?.['required']">Name is required.</div>
+            <div *ngIf="username.errors?.['pattern']">Enter a valid Name</div>
+          </small>
+        </div> -->
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            pInputText
+            formControlName="email"
+            class="w-full"
+            name="email"
+            placeholder="Type your email"
+          />
+          <small
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['email']">Email should be valid</div>
+          </small>
+        </div>
+        <!-- <div class="field">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            pInputText
+            formControlName="password"
+            class="w-full"
+            name="password"
+            placeholder="Type your password"
+          />
+          <small
+            *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="password.errors?.['required']">Password is required.</div>
+          </small>
+        </div> -->
+        <!-- <div class="field">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            pInputText
+            formControlName="confirmPassword"
+            class="w-full"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+          />
+          <small
+            *ngIf="
+              confirmPassword.invalid &&
+              (confirmPassword.dirty || confirmPassword.touched)
+            "
+            class="block p-error"
+          >
+            <div *ngIf="confirmPassword.errors?.['required']">
+              Confirm the password
+            </div>
+          </small>
+          <small
+            class="block p-error"
+            *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+          >
+            Password should match
+          </small>
+        </div> -->
+
+        <div class="field">
+          <i class="fas fa-lock"></i>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            required
+            formControlName="password"
+          />
+        </div>
+        <small
+          *ngIf="registerForm.get('password').errors?.['required'] && registerForm.get('password').touched"
+        >
+          *Password is required field
+        </small>
+        <small
+          *ngIf="registerForm.get('password').errors?.['pattern'] && registerForm.get('password').touched"
+        >
+          *Password must contain at least 8 characters including capital letter,
+          small letters, number and special character.
+        </small>
+
+        <div class="field">
+          <i class="fas fa-lock"></i>
+          <input
+            type="password"
+            placeholder="Confirm password"
+            required
+            formControlName="cpassword"
+          />
+        </div>
+        <small
+          *ngIf="
+            registerForm.hasError('passwordMismatch') &&
+            registerForm.get('cpassword').touched
+          "
+        >
+          *Please enter same password
+        </small>
+
+        <div class="field">
+          <i class="fas fa-mars"></i>
+          <select formControlName="gender" id="fieldd" required>
+            <option value="M" selected>Female</option>
+            <option value="F">Male</option>
+            <option value="O">Other</option>
+          </select>
+          <div class="field">
+            <i class="fas fa-calendar"></i>
+            <input type="date" required formControlName="dob" />
+          </div>
+          <small
+            *ngIf="registerForm.get('dob').errors?.['required'] && registerForm.get('dob').touched"
+          >
+            *Select date of birth
+          </small>
+        </div>
+
+        <button
+          pButton
+          class="p-button-info"
+          [disabled]="!registerForm.valid"
+          type="submit"
+        >
+          Register
+        </button>
+        <p *ngIf="showErrorCreateUserMsg" class="showErrorCreateUserMsg">
+          {{ showErrorCreateUserMsg }}
+        </p>
+        <p *ngIf="showSuccessCreateUserMsg" class="showSuccessCreateUserMsg">
+          {{ showSuccessCreateUserMsg }}
+        </p>
+
+        <div class="mt-2">
+          Already a member? <a routerLink="/login">Login</a>
+        </div>
+      </p-card>
+    </form>
+  </div>
+</section>
+<footer>
+  <app-footer />
+</footer>

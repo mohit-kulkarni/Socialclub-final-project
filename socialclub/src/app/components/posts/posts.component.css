@@ -1,0 +1,9 @@
+.post {
+  min-width: 450px;
+  max-width: 90vw;
+  min-height: 300px;
+  background-color: var(--main-background-color);
+  border: 1px solid #dbdbdb;
+  border-radius: 15px;
+  margin: 20px;
+}/*# sourceMappingURL=posts.component.css.map */

@@ -1,0 +1,17 @@
+<div class="flex justify-content-center align-items-center h-full">
+  <router-outlet></router-outlet>
+  <!-- <app-stories /> -->
+  <p-toast></p-toast>
+</div>
+<div id="home">
+  <main id="main-content">
+    <app-stories/>
+    <div class="posts-container">
+      <app-posts />
+    </div>
+  </main>
+  <aside id="infos">
+    <app-aside-data />
+  </aside>
+</div>
+<app-footer/>

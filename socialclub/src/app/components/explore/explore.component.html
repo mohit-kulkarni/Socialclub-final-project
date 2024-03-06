@@ -1,0 +1,24 @@
+<div class="explore">
+  <h1>Follow Requests</h1>
+  <div class="follow-requests" *ngIf="friendRequests.length > 0">
+    <div class="follow-request" *ngFor="let request of friendRequests">
+      <img [src]="imageLink" alt="User Avatar" /> 
+      <span class="username">{{ request.from_user.username }}</span>
+      <button
+        title="accept"
+        type="button"
+        (click)="acceptFriendRequest(request.id)"
+      >
+        <span class="material-symbols-outlined"> done </span>
+      </button>
+      <button
+        title="reject"
+        type="button"
+        (click)="rejectFriendRequest(request.id)"
+      ></button>
+    </div>
+  </div>
+  <div *ngIf="friendRequests.length === 0">
+    <p>No pending follow requests.</p>
+  </div>
+</div>

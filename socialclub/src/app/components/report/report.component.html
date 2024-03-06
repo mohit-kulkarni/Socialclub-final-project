@@ -1,0 +1,13 @@
+<form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Report Type:</label>
+    <select formControlName="report_type">
+      <option *ngFor="let type of reportTypes" [value]="type.value">{{ type.label }}</option>
+    </select>
+  </div>
+  <div>
+    <label>Description:</label>
+    <textarea formControlName="description"></textarea>
+  </div>
+  <button type="submit">Submit Report</button>
+</form>

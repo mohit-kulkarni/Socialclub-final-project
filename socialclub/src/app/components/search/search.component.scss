@@ -1,0 +1,44 @@
+.search-area {
+
+    input[type="search"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        transition: border-color 0.3s ease;
+        text-align: center;
+
+        &:focus {
+            border-color: #007bff;
+            /* Change border color on focus */
+        }
+    }
+}
+
+.search-results {
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: #e9e9e9;
+                /* Change background color on hover */
+            }
+        }
+    }
+}
+
+.no-results-message {
+    color: #dc3545;
+    /* Use red color for the message */
+    font-style: italic;
+}

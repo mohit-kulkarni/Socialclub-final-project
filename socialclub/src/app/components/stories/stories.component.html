@@ -1,0 +1,10 @@
+<div id="stories">
+  <div class="stories-container">
+    <div class="story" *ngFor="let user of users">
+      <div class="story-user-img">
+        <img [src]="generateImageLink(user.profile_pic)" [alt]="user.profile_pic">
+      </div>
+      <span class="story-username">{{ user.username }}</span>
+    </div>
+  </div>
+</div>

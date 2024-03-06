@@ -1,0 +1,28 @@
+<div class="post-media">
+  <!-- Check if the media is an image -->
+  <ng-container *ngIf="mediaType === 'image'">
+    <div class="post-image">
+      <img [src]="mediaLink" alt="Image" />
+    </div>
+  </ng-container>
+
+  <!-- Check if the media is a video -->
+  <ng-container *ngIf="mediaType === 'video'">
+    <div class="post-video">
+      <video nocontrols loop>
+        <source [src]="mediaLink" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </ng-container>
+
+  <!-- Check if the media is an audio -->
+  <ng-container *ngIf="mediaType === 'audio'">
+    <div class="post-audio">
+      <audio controls>
+        <source [src]="mediaLink" type="audio/mpeg" />
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
+  </ng-container>
+</div>

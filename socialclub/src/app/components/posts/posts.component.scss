@@ -1,0 +1,46 @@
+.post-display {
+  max-width: 100%;
+  width: min(470px, 100vw);
+  .post {
+    max-width: 630px;
+    width: 100%;
+    background-color: white;
+    //   border: 1px solid #dbdbdb;
+    // border-radius: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    // box-shadow: 0 0 15px hsla(192, 100%, 26%, 0.158);
+  }
+}
+.no-posts {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+
+  .post-loader {
+    margin-top: 25px;
+    border: 1px solid #949494;
+    padding: 12px;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #e7e7e7;
+    }
+  }
+
+  .rotate {
+    animation: rotate 1s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+}

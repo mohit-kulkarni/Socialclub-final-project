@@ -1,0 +1,14 @@
+  <div class="search-area">
+    <input type="search" [formControl]="searchControl" placeholder="Search" />
+  </div>
+  
+  <div *ngIf="searchResults.length > 0" class="search-results">
+    <ul>
+      <li *ngFor="let result of searchResults">{{ result.username }}</li>
+    </ul>
+  </div>
+  
+  <div *ngIf="searchResults.length === 0 && searchControl.value" class="no-results-message">
+    No results found.
+  </div>
+  

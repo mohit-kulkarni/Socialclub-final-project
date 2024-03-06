@@ -1,0 +1,38 @@
+<div id="aside-data">
+  <div class="user-infos">
+    <img [src]="userImageSource" alt="user IMG" class="user-img" />
+    <div class="user-name-infos">
+      <span class="user-username">{{ loggedInUser }}</span>
+      <span class="user-name">
+        <small>
+          {{ LoggedInEmail }}
+        </small>
+      </span>
+    </div>
+  </div>
+
+  <div class="suggestions">
+    <div class="suggestions-heading">
+      <h2>Suggestions for you</h2>
+    </div>
+    <div class="suggestions-wrapper">
+      <div class="suggestion" *ngFor="let user of users">
+        <img
+          [src]="generateImageLink(user.profile_pic)"
+          alt=""
+          class="user-suggestion-avatar"
+        />
+        <div class="user-suggestion-data">
+          <span class="user-username">{{ user.fname }}</span>
+          <span class="user-info">Suggestion for you</span>
+        </div>
+        <button class="btn" (click)="sendFollowRequest(user.user)">
+          Follow
+        </button>
+      </div>
+    </div>
+    <div class="insta-infos">
+      <h2>&copy; {{ year }} SOCIALCLUB OF SOCIALCLUB</h2>
+    </div>
+  </div>
+</div>

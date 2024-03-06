@@ -1,0 +1,107 @@
+<!-- <div class="form-bg">
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <p-card [style]="{ width: '360px' }">
+      <ng-template pTemplate="header">
+        <div class="custom-header"><b>Login</b></div>
+      </ng-template>
+      <div class="field">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          pInputText
+          formControlName="username"
+          class="w-full"
+          name="username"
+          placeholder="Type your username"
+        />
+        <small
+          *ngIf="username.invalid && (username.dirty || username.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="username.errors?.['required']">username is required.</div>
+          <div *ngIf="username.errors?.['username']">username should be valid</div>
+        </small>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          pInputText
+          formControlName="password"
+          class="w-full"
+          name="password"
+          placeholder="Type your password"
+        />
+        <small
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="password.errors?.['required']">Password is required.</div>
+        </small>
+      </div>
+      <button
+        class="p-button-info"
+        [disabled]="loginForm.invalid"
+        type="submit"
+      >
+        Login
+      </button>
+      <div class="mt-2">Not a member? <a routerLink="/join">Join now</a></div>
+    </p-card>
+  </form>
+</div> -->
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+crossorigin="anonymous"></script>
+
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="../../../assets/img/signup.svg  "
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="login-form">
+          <div class="title">Login</div>
+          <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+            <div class="input-boxes">
+              <div class="input-box">
+                <!-- <i class="fas fa-envelope"></i> -->
+                <input id="emailId" type="text" placeholder="Enter your username" formControlName="username">
+              </div>
+              <small *ngIf="loginForm.get('username').errors?.['required'] && loginForm.get('username').touched">
+                *Username is required field
+              </small>
+              <div class="input-box">
+                <!-- <i class="fas fa-lock"></i> -->
+                <input id="passwordId" type="password" placeholder="Enter your password" formControlName="password">
+              </div>
+              <small *ngIf="loginForm.get('password').errors?.['required'] && loginForm.get('password').touched">
+                *password is required field
+              </small>
+              <div class="text"><a routerLink="/forgotpwd">Forgot password?</a></div>
+              <p *ngIf="errorMessage" class="showErrorCreateUserMsg">{{errorMessage}}</p>
+              <div class="button input-box">
+                <input id="loginSubmitId" type="submit" value="Submit" [disabled]="!loginForm.valid">
+              </div>
+              <div class="text sign-up-text">Don't have an account? <a routerLink="/join">Join now</a></div>
+            </div>
+          </form>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <app-footer></app-footer>
+</footer>

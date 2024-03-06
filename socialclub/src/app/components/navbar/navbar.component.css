@@ -1,0 +1,61 @@
+#navbar {
+  min-height: 54px;
+  width: 100vw;
+  background: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 5px 60px;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+}
+#navbar .img-logo {
+  align-self: flex-end;
+}
+#navbar .search-area {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+#navbar .search-area #search {
+  border: 1px solid #dbdbdb;
+  background-color: #f7f7f7;
+  outline: none;
+  border-radius: 3px;
+  height: 28px;
+  font-size: 14px;
+  width: 300px;
+  padding: 0 5px;
+  text-align: center;
+}
+#navbar .search-area #search::-moz-placeholder {
+  text-align: center;
+}
+#navbar .search-area #search::placeholder {
+  text-align: center;
+}
+#navbar .navigation .navigation-navbar {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  justify-self: flex-end;
+}
+#navbar .navigation .navigation-navbar .navigation-navbar-item {
+  margin-right: 25px;
+}
+#navbar .navigation .navigation-navbar .navigation-navbar-item:last-child {
+  margin-right: 0;
+}
+
+#navigation-user-image {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=navbar.component.css.map */

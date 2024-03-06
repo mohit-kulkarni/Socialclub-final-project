@@ -1,0 +1,85 @@
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border: 1px solid hsl(0, 0%, 79%);
+  border-radius: 20px;
+  padding: 10px;
+
+  .profile-image {
+    width: 300px; /* Adjust the size as needed */
+    height: 300px; /* Adjust the size as needed */
+    border-radius: 50%;
+    margin: 20px; /* Adjust the spacing between image and info */
+  }
+
+  .profile-info {
+    border-left: 1px solid #686868;
+    padding-left: 50px;
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      background-color: hsl(224, 60%, 53%);
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: medium;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: hsl(224, 90%, 53%);
+      }
+    }
+  }
+
+  .profile-edit-form {
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  }
+
+  .profile-stats {
+    display: flex;
+    margin-top: 20px; /* Adjust the spacing between info and stats */
+
+    .followers,
+    .following,
+    .posts {
+      flex: 1;
+      text-align: center;
+      margin-right: 20px;
+
+      h3 {
+        margin-bottom: 5px;
+      }
+
+      p {
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.main {
+  // min-height: 100vh;
+  height: 100vh;
+  // overflow: hidden;
+  width: 100vw;
+  max-width: 100vw;
+  background: var(--app-background-color);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  .content {
+    // min-height: calc(100vh - 54px);
+    // padding: 0 200px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    margin-left: 250px;
+  }
+  // .navbar {
+  //   position: fixed;
+  //   border-radius: 15px 0px;
+  //   overflow: hidden;
+  // }
+}
