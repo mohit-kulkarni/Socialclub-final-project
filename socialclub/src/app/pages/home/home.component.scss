@@ -34,3 +34,18 @@
     padding-left: 64px;
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  #home {
+    margin-left: 10vw;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  #home {
+    margin-left: 0vw;
+  }
+  aside {
+    display: none;
+  }
+}
