@@ -34,6 +34,10 @@ $app-background-color: #f7f7f7;
       margin: 30px 0px;
     }
 
+    .img-logo-small {
+      display: none;
+    }
+
     .search-area {
       //   flex-grow: 1;
       display: flex;
@@ -63,8 +67,6 @@ $app-background-color: #f7f7f7;
       height: 100%;
       width: 100%;
 
-
-      
       .navigation-navbar {
         display: flex;
         flex-direction: column;
@@ -109,5 +111,90 @@ $app-background-color: #f7f7f7;
     width: 30px;
     border-radius: 50%;
     object-fit: cover;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .sidebar-nav {
+    width: auto;
+    padding: 12px;
+
+    #navbar {
+      // padding: 5px;
+      // justify-content: space-between;
+      // align-items: center;
+
+      .img-logo {
+        margin: 0;
+      }
+
+      .search-area {
+        display: none;
+      }
+
+      .navigation {
+        .navigation-navbar-item {
+          justify-content: center;
+        }
+        .nav-item-name {
+          display: none;
+        }
+      }
+      // Hide the large logo and show the small logo
+      .img-logo {
+        display: none;
+      }
+
+      .img-logo-small {
+        display: block;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .sidebar-nav {
+    position: fixed;
+    bottom: 0; /* Place the sidebar at the bottom */
+    top: auto; /* Remove top positioning */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    padding: 12px;
+    z-index: 9099;
+    height: auto; /* Allow height to adjust based on content */
+    border-top: 1px solid #ddd;
+
+    #navbar {
+      padding: 5px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .img-logo {
+        margin: 0;
+      }
+
+      .search-area {
+        display: none;
+      }
+
+      .navigation {
+        flex-direction: row;
+
+        .navigation-navbar {
+          flex-direction: row;
+        }
+        .navigation-navbar-item {
+          justify-content: center;
+        }
+
+        .img-logo {
+          display: none;
+        }
+
+        .img-logo-small {
+          display: block;
+        }
+      }
+    }
   }
 }

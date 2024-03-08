@@ -9,11 +9,13 @@ $stories-background-color: var(--main-background-color);
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
+  display: flex;
+  justify-content: center;
 
   .stories-container {
     display: flex;
     max-width: 591px;
-    transition: transform .2s ease-in;
+    transition: transform 0.2s ease-in;
 
     .story {
       display: flex;
@@ -22,7 +24,8 @@ $stories-background-color: var(--main-background-color);
       align-items: center;
       margin-left: 15px;
 
-      + .story { // Sibling selector
+      + .story {
+        // Sibling selector
         margin-left: 6px;
       }
 
@@ -33,7 +36,8 @@ $stories-background-color: var(--main-background-color);
         padding: 2px;
         border-radius: 50%;
         border: 2px solid transparent;
-        background: linear-gradient(white, white) padding-box, linear-gradient(to right, #feda75, #fa7e1e, #d62976) border-box;
+        background: linear-gradient(white, white) padding-box,
+          linear-gradient(to right, #feda75, #fa7e1e, #d62976) border-box;
         display: flex;
         justify-content: center;
         align-items: center;

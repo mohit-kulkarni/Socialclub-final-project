@@ -11,6 +11,7 @@ import { TokenService } from '../../services/token.service';
 })
 export class NavbarComponent {
   logoSource: string = '../../assets/logo/text.png';
+  logoSourceMedium: string = '../../assets/logo/img.png';
   userImageSource: string = '../assets/img/user_00.jpg'; // Replace with the actual default image path
 
   selectedItem: any;
