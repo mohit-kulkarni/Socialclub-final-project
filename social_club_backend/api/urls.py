@@ -33,12 +33,8 @@ urlpatterns=[
     path('friends-posts/', FriendPostList.as_view(), name='friends-posts'),
     # path('api/is-friend/batch/', check_is_friend_batch),
     path('is-friend/<int:user_id>/', IsFriendAPIView.as_view(), name='is_friend'),
-    # path('post/',postApi),  
-    # path('comment/',commentApi),
-    # path('like/',likeApi),
-    # path('follower/',views.followerApi),
-
-    # path('SaveFile$', views.SaveFile)
+    path('stories/', StoryListCreateAPIView.as_view(), name='story-list-create'),
+    path('stories/<int:pk>/', StoryRetrieveUpdateDestroyAPIView.as_view(), name='story-detail')
 ]
 urlpatterns += router.urls
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

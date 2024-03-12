@@ -1,7 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
-// import * as faker from 'faker';
+import { Story } from '../../interfaces/story';
+import { StoryService } from '../../services/story.service';
+import { MatDialog } from '@angular/material/dialog'; 
 
 @Component({
   selector: 'app-stories',
@@ -10,9 +12,15 @@ import { UserService } from '../../services/user.service';
 })
 export class StoriesComponent implements OnInit {
   users: User[] | any = [];
+  stories: Story[];
   imageLink: string;
+  noUser = '../../../assets/img/no_user.jpg';
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private storyService: StoryService,
+    private dialog: MatDialog
+  ) {}
 
   generateStories(): User[] {
     let storiesQuantity = 0;
@@ -38,6 +46,18 @@ export class StoriesComponent implements OnInit {
       }
     );
   }
+
+  // fetchStories(): void {
+  //   this.storyService.getStories().subscribe(
+  //     (stories) => {
+  //       this.stories = stories;
+  //       console.log(`Stories: ${stories}`);
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching stories:', error);
+  //     }
+  //   );
+  // }
 
   generateImageLink(imageSource): string {
     return `http://localhost:8000${imageSource}`;

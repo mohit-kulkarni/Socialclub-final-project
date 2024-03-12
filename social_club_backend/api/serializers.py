@@ -9,7 +9,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ['id', 'user', 'username', 'email']  # Include only necessary fields
 
 
 
@@ -30,6 +30,12 @@ class PostSerializer(serializers.ModelSerializer):
         model = NewPost
         fields = '__all__'
 
+
+class StorySerializer(serializers.ModelSerializer):
+    user = UserProfileSerializer(read_only=True)
+    class Meta:
+        model = Story
+        fields = '__all__'
 
         
 # class PostSerializer(serializers.ModelSerializer):
