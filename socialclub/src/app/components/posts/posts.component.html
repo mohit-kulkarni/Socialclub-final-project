@@ -6,6 +6,7 @@
       [imageSource]="post.image_or_video"
       *ngIf="post.image_or_video"
     />
+    
     <div class="post-caption" *ngIf="!post.image_or_video">
       {{ post.caption }}
     </div>

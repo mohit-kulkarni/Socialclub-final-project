@@ -9,3 +9,19 @@
        border: 1px solid #cacaca;
     }
 }
+.post-video {
+    max-width: 100%; // Ensure video doesn't exceed container width
+    width: auto; // Allow video width to adjust dynamically
+    height: auto; // Allow video height to adjust dynamically while maintaining aspect ratio
+    display: block; // Ensure video is displayed as a block element
+    margin: 0 auto; // Center the video horizontally within the container
+  
+    video {
+      width: 100%; // Ensure video fills the container width
+      height: auto; // Allow video height to adjust dynamically while maintaining aspect ratio
+      max-height: 100%; // Ensure video doesn't exceed container height
+      object-fit: contain; // Maintain aspect ratio and fit video within container
+      border-radius: 5px; // Optional: Apply border radius to video container
+      border: 1px solid #cacaca; // Optional: Apply border to video container
+    }
+  }
