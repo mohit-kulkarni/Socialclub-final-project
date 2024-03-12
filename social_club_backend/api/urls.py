@@ -20,6 +20,7 @@ urlpatterns=[
     path('user-details/', list_all_users, name='list-all-users'),
     path('user-details/<int:user_id>/', UserDetailsView.as_view(), name='user-details'),
     path('post/', PostListCreate.as_view(), name='post-list-create'),
+    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('comment/',commentApi),
     path('pending-friend-requests/', get_pending_friend_requests, name='get_pending_friend_requests'),
     path('send-friend-request/', send_friend_request, name='send_friend_request'),

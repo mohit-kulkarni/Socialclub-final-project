@@ -5,6 +5,8 @@ import { LikeService } from '../../../services/like.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../interfaces/user';
+import { PostService } from '../../../services/post.service';
+
 
 CommentService;
 @Component({
@@ -35,12 +37,34 @@ export class PostFooterComponent implements OnInit {
     private commentService: CommentService,
     private userService: UserService,
     private likeService: LikeService,
+    private postService: PostService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     // Assuming you want to fetch and display existing comments when the component is initialized
     this.fetchComments();
+    this.fetchLikeCount();
+  }
+  fetchLikeCount(): void {
+    this.postService.getPostById(this.postId).subscribe(
+      (response) => {
+        console.log('Post liked successfully!', response);
+        this.likeCount = response.likes_count;
+        // You can handle success response here
+      },
+      (error) => {
+        console.error('Error while liking post:', error);
+        // You can handle error here
+      }
+    );
+    // this.postService.getPostById(this.postId).subscribe({
+    //   next: (post) => {
+    //       alert('postid') ;       
+    //     this.likeCount = post.likes_count; // Assuming 'likes_count' is the property name in your response
+    //   },
+    //   error: (error) => console.error('Error fetching post details:', error),
+    // });
   }
   likePost() {
     this.likeService.likePost(this.postId, this.userId).subscribe(
@@ -52,7 +76,7 @@ export class PostFooterComponent implements OnInit {
         console.error('Error while liking post:', error);
         // You can handle error here
       }
-    );
+    ); this.fetchLikeCount();
   }
 
   changeLikeCheckedValue() {

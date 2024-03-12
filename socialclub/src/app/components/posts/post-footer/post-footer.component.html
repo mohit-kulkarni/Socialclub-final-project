@@ -90,13 +90,15 @@
   </div>
   <div class="likes">
     <span class="user-img">
-      <img [src]="" alt="" />
+    
     </span>
     <span class="likedby">
-      Liked by <b></b> and
-      <b style="text-decoration: none"> others</b>
+      <!-- <b>Liked by </b>  -->
+      <p>{{ likeCount }} likes</p>
+      
     </span>
   </div>
+  
   <div class="comments">
     <span class="comment" *ngFor="let comment of commentsWithUsername">
       <span class="comment-author">{{ comment.username }}</span>
