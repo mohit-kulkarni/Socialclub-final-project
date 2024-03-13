@@ -20,7 +20,10 @@ export class StoryService {
   // }
 
   getValidStories(): Observable<Story[]> {
-    return this.http.get<Story[]>(this.apiUrl).pipe(
+    const headers = new HttpHeaders({
+      Authorization: `Token ${this.auth_token}`, // Include the token in the Authorization header
+    });
+    return this.http.get<Story[]>(this.apiUrl, { headers }).pipe(
       // Filter out stories that are no longer valid
       map((stories) => stories.filter((story) => this.isValidStory(story)))
     );

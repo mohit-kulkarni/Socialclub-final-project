@@ -37,6 +37,7 @@ import { ReportComponent } from './components/report/report.component';
 import { ForgetpswdComponent } from './components/forgetpswd/forgetpswd.component';
 import { FriendRequestService } from './services/friend-request.service';
 import { StoriesViewComponent } from './components/stories-view/stories-view.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { StoriesViewComponent } from './components/stories-view/stories-view.com
     MenuModule,
     DropdownModule,
   ],
-  providers: [CommentService, MessageService],
+  providers: [CommentService, MessageService, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

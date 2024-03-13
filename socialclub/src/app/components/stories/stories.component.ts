@@ -3,7 +3,7 @@ import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
 import { Story } from '../../interfaces/story';
 import { StoryService } from '../../services/story.service';
-import { MatDialog } from '@angular/material/dialog'; 
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-stories',
@@ -36,28 +36,28 @@ export class StoriesComponent implements OnInit {
     return users;
   }
 
-  fetchStories(): void {
-    this.userService.getAllUsers().subscribe(
-      (data) => {
-        this.users = data;
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
-      }
-    );
-  }
-
   // fetchStories(): void {
-  //   this.storyService.getStories().subscribe(
-  //     (stories) => {
-  //       this.stories = stories;
-  //       console.log(`Stories: ${stories}`);
+  //   this.userService.getAllUsers().subscribe(
+  //     (data) => {
+  //       this.users = data;
   //     },
   //     (error) => {
-  //       console.error('Error fetching stories:', error);
+  //       console.error('Error fetching users:', error);
   //     }
   //   );
   // }
+
+  fetchStories(): void {
+    this.storyService.getValidStories().subscribe(
+      (stories) => {
+        this.stories = stories;
+        console.log(`Stories: ${stories}`);
+      },
+      (error) => {
+        console.error('Error fetching stories:', error);
+      }
+    );
+  }
 
   generateImageLink(imageSource): string {
     return `http://localhost:8000${imageSource}`;
@@ -65,6 +65,8 @@ export class StoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchStories();
+    console.log(`fetching stories oninit`);
+
     // this.imageLink = this.generateImageLink()
   }
 }
