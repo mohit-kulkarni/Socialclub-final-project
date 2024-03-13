@@ -27,6 +27,7 @@ from django.contrib.postgres.search import SearchQuery, SearchVector
 # from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from django.views.generic import View
 
 
 @csrf_exempt
@@ -188,8 +189,17 @@ class PostListCreate(generics.ListCreateAPIView):
     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    
 
+class PostDetailView(View):
+    def get(self, request, pk):
+        # Retrieve post from database by ID
+        post = get_object_or_404(NewPost, pk=pk)
+        
+        # Serialize the post object
+        serializer = PostSerializer(post)
+        
+        # Return serialized post data as JSON response
+        return JsonResponse(serializer.data)
 class FriendPostList(generics.ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [AllowAny]

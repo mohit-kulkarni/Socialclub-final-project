@@ -9,7 +9,7 @@
   <!-- Check if the media is a video -->
   <ng-container *ngIf="mediaType === 'video'">
     <div class="post-video">
-      <video nocontrols loop>
+      <video controls>
         <source [src]="mediaLink" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
