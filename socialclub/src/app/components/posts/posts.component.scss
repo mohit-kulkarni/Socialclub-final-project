@@ -12,34 +12,35 @@
     // box-shadow: 0 0 15px hsla(192, 100%, 26%, 0.158);
   }
   .no-posts {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
 
-  .post-loader {
-    margin-top: 25px;
-    border: 1px solid #949494;
-    padding: 12px;
-    border-radius: 50%;
+    .post-loader {
+      margin-top: 25px;
+      border: 1px solid #949494;
+      padding: 12px;
+      border-radius: 50%;
 
-    &:hover {
-      cursor: pointer;
-      background-color: #e7e7e7;
+      &:hover {
+        cursor: pointer;
+        background-color: #e7e7e7;
+      }
     }
-  }
 
-  .rotate {
-    animation: rotate 1s linear infinite;
-  }
-
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
+    .rotate {
+      animation: rotate 1s linear infinite;
     }
-    to {
-      transform: rotate(180deg);
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(180deg);
+      }
     }
   }
 }
