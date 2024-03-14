@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { Story } from '../../interfaces/story';
 import { StoryService } from '../../services/story.service';
 import { MatDialog } from '@angular/material/dialog';
+import { StoriesViewComponent } from '../stories-view/stories-view.component';
 
 @Component({
   selector: 'app-stories',
@@ -15,26 +16,16 @@ export class StoriesComponent implements OnInit {
   stories: Story[];
   imageLink: string;
   noUser = '../../../assets/img/no_user.jpg';
+  userImageSource = `http://localhost:8000/${sessionStorage.getItem(
+    'profile_pic'
+  )}`;
+  userUsername = sessionStorage.getItem('username');
 
   constructor(
     private userService: UserService,
     private storyService: StoryService,
     private dialog: MatDialog
   ) {}
-
-  generateStories(): User[] {
-    let storiesQuantity = 0;
-    let users: User[] = [];
-
-    for (let i = 0; i < storiesQuantity; i++) {
-      users.push({
-        username: 'Username',
-        profile_pic: '../../../assets/img/no_user.jpg',
-      });
-    }
-
-    return users;
-  }
 
   // fetchStories(): void {
   //   this.userService.getAllUsers().subscribe(
@@ -51,12 +42,25 @@ export class StoriesComponent implements OnInit {
     this.storyService.getValidStories().subscribe(
       (stories) => {
         this.stories = stories;
-        console.log(`Stories: ${stories}`);
+        console.log(`Stories:`);
+        console.log(stories);
       },
       (error) => {
         console.error('Error fetching stories:', error);
       }
     );
+  }
+
+  openStoryView(story: any) {
+    const dialogRef = this.dialog.open(StoriesViewComponent, {
+      width: '600px',
+      data: { story: story }, // Pass the selected story as data
+    });
+
+    // Subscribe to the dialog after it's closed
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
   }
 
   generateImageLink(imageSource): string {

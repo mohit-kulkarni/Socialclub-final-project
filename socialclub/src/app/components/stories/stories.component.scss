@@ -10,7 +10,7 @@ $stories-background-color: var(--main-background-color);
   overflow: hidden;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 
   .stories-container {
     display: flex;
@@ -41,6 +41,11 @@ $stories-background-color: var(--main-background-color);
         display: flex;
         justify-content: center;
         align-items: center;
+
+        + .story-new {
+          background: linear-gradient(white, white) padding-box,
+          linear-gradient(to right, #feda75, #fa7e1e, #d62976) border-box;
+        }
 
         img {
           width: inherit;

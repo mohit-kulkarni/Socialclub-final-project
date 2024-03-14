@@ -11,11 +11,18 @@
     </div>
   </div>
 </div> -->
+
 <div id="stories">
   <div class="stories-container">
-    <div class="story" *ngFor="let story of stories">
+    <div class="story">
       <div class="story-user-img">
-        <img [src]="story.image" [alt]="story.image" />
+        <img [src]="userImageSource" [alt]="userImageSource" />
+      </div>
+      <span class="story-username">{{ userUsername }}</span>
+    </div>
+    <div class="story" *ngFor="let story of stories">
+      <div class="story-user-img" (click)="openStoryView(story)">
+        <img [src]="generateImageLink(story.image)" [alt]="story.image" />
       </div>
       <span class="story-username">{{ story.user.username }}</span>
     </div>
