@@ -14,9 +14,7 @@ export class postsComponent implements OnInit {
   posts: Post[];
   error: string | null = null;
 
-  constructor(
-    private apiService: ApiService,
-  ) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.fetchData();
@@ -33,6 +31,7 @@ export class postsComponent implements OnInit {
       next: (data) => {
         this.posts = data;
         console.log('Posts of friends: ', this.posts);
+        // console.log(this.posts);
       },
       error: (error) => {
         this.error = error.message || 'An error occurred while fetching data.';
