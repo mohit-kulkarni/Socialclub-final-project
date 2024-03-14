@@ -28,7 +28,7 @@ from django.contrib.postgres.search import SearchQuery, SearchVector
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.views.generic import View
-
+from django.http import Http404
 
 @csrf_exempt
 @api_view(['POST'])
@@ -115,6 +115,34 @@ class UserProfileAPIView(APIView):
             serializer.save()
             return Response("Added Successfully!!", status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+#leshaaaaaa#######
+    
+@permission_classes([AllowAny])
+class UserProfileDetailView(generics.RetrieveUpdateAPIView):
+    # @method_decorator(csrf_exempt)
+    permission_classes = [AllowAny]
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    def get_object(self):
+        user_id = self.kwargs.get('user_id')
+        try:
+            return UserProfile.objects.get(user_id=user_id)
+        except UserProfile.DoesNotExist:
+            raise Http404
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data) 
    
 ######## to GET all users ########
 

@@ -1,8 +1,7 @@
-// profile.component.ts
-
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,6 +9,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
+
   user = {
     name: sessionStorage.getItem('username'),
     email: sessionStorage.getItem('email'),
@@ -21,27 +21,29 @@ export class ProfileComponent {
   imageLink = this.generateImageLink(this.user.profileImage)
 
   isEditMode = false;
-  profileImageFile: File | null = null; // Add this line if you want to handle profile image file uploads
+  profileImageFile: File | null = null;
 
   searchControl = new FormControl();
   @Output() profileImageChange = new EventEmitter<string>();
 
-  // ...
+  constructor(private profileService: ProfileService, private route: Router) { }
 
   onProfileImageChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     const files = target.files;
-
+  
     if (files && files.length > 0) {
       const file = files[0];
-
-      // You may want to handle file uploads and update the user's profile image
-      // For simplicity, we'll just set the profileImage to a base64 representation of the file
       const reader = new FileReader();
+      
       reader.onload = () => {
-        this.user.profileImage = reader.result as string;
-        this.profileImageChange.emit(this.user.profileImage);
+        // Convert the image file to a base64 string
+        const base64Image = reader.result as string;
+       
+        // Emit the base64 string to the parent component or service
+        this.profileImageChange.emit(base64Image);
       };
+      
       reader.readAsDataURL(file);
     }
   }
@@ -51,9 +53,47 @@ export class ProfileComponent {
   }
 
   saveChanges(): void {
-    // Implement the logic to save changes (e.g., call a service to update user data)
-    console.log('Changes saved:', this.user);
+  console.log(sessionStorage.getItem('userId')); // You need to replace this with the actual userId
+  const userId = parseInt(sessionStorage.getItem('userId'), 10); 
+  // const userId=33
+    // if (this.profileImageFile) {
+    //   const formData = new FormData();
+    //   formData.append('name', this.user.name);
+    //   formData.append('email', this.user.email);
+    //   formData.append('profileImage', this.profileImageFile);
+
+      // this.profileService.updateProfile(userId, formData).subscribe(
+      //   (response) => {
+      //     console.log('Changes saved:', response);
+      //     // You can handle success notification here if needed
+      //     this.route.navigate(['/home']);
+      //   },
+      //   (error) => {
+      //     console.error('Error saving changes:', error);
+      //     // You can handle error notification here if needed
+      //   }
+      // );    
+    // } else {
+      const profileData = {
+        name: this.user.name,
+        email: this.user.email,
+        profileImage: this.user.profileImage
+      };
+      this.profileService.updateUserProfile(userId, profileData).subscribe(
+        (response) => {
+          // You can handle success notification here if needed
+          this.route.navigate(['/home']);
+          console.log('Changes saved:', response);
+
+        },
+        (error) => {
+          console.error('Error saving changes:', error);
+          // You can handle error notification here if needed
+        }
+      );
+    // }
   }
+
   generateImageLink(imageSource): string {
     return `http://localhost:8000/${imageSource}`;
   }

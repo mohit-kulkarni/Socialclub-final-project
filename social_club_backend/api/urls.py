@@ -34,6 +34,7 @@ urlpatterns=[
     path('friends-posts/', FriendPostList.as_view(), name='friends-posts'),
     # path('api/is-friend/batch/', check_is_friend_batch),
     path('is-friend/<int:user_id>/', IsFriendAPIView.as_view(), name='is_friend'),
+    path('user-profile/<int:user_id>/', UserProfileDetailView.as_view(), name='user_profile_detail'),
     # path('post/',postApi),  
     # path('comment/',commentApi),
     # path('like/',likeApi),
