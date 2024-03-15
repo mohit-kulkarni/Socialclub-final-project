@@ -1,0 +1,27 @@
+<div *ngFor="let post of bookmarkedPostsDetails" class="card">
+  <div class="card-header">
+    <h3>{{ post.username }}</h3>
+  </div>
+  
+  <div class="card-body">
+    <!-- Check if the media type is image -->
+    <ng-container *ngIf="post.mediaType === 'image'">
+      <div class="post-image">
+        <img [src]="post.mediaUrl" alt="Post Image">
+      </div>
+    </ng-container>
+
+    <!-- Check if the media type is video -->
+    <ng-container *ngIf="post.mediaType === 'video'">
+      <div class="post-video">
+        <video [src]="post.mediaUrl" controls></video>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="card-footer">
+    <h3>{{ post.caption }}</h3>
+    <p>Location: {{ post.location }}</p>
+    <!-- Add any other post details you want to display -->
+  </div>
+</div>

@@ -78,3 +78,9 @@ class LikeAdmin(admin.ModelAdmin):
                 'user',
         ]
         
+@admin.register(Bookmark)
+class BookmarkCreateAPIView(admin.ModelAdmin):
+      list_display = [
+            'id',
+            'post',
+      ]

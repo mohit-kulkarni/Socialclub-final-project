@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../interfaces/user';
 import { PostService } from '../../../services/post.service';
+import { BookmarkService } from '../../../services/bookmark.service';
 
 
 CommentService;
@@ -38,6 +39,7 @@ export class PostFooterComponent implements OnInit {
     private userService: UserService,
     private likeService: LikeService,
     private postService: PostService,
+    private bookmarkService: BookmarkService,
     private router: Router
   ) {}
 
@@ -45,6 +47,22 @@ export class PostFooterComponent implements OnInit {
     // Assuming you want to fetch and display existing comments when the component is initialized
     this.fetchComments();
     this.fetchLikeCount();
+    this.checkLikedState();
+  }
+  checkLikedState() {
+    // Check if the post is liked by this user
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
+    this.likeChecked = !!likedPosts[this.postId];
+  }
+  updateLikedState(isLiked: boolean) {
+    const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
+    if (isLiked) {
+      likedPosts[this.postId] = true;
+    } else {
+      delete likedPosts[this.postId];
+    }
+    localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    this.likeChecked = isLiked;
   }
   fetchLikeCount(): void {
     this.postService.getPostById(this.postId).subscribe(
@@ -58,25 +76,21 @@ export class PostFooterComponent implements OnInit {
         // You can handle error here
       }
     );
-    // this.postService.getPostById(this.postId).subscribe({
-    //   next: (post) => {
-    //       alert('postid') ;       
-    //     this.likeCount = post.likes_count; // Assuming 'likes_count' is the property name in your response
-    //   },
-    //   error: (error) => console.error('Error fetching post details:', error),
-    // });
+  
   }
   likePost() {
     this.likeService.likePost(this.postId, this.userId).subscribe(
       (response) => {
         console.log('Post liked successfully!', response);
         // You can handle success response here
+        this.updateLikedState(true);
+        this.fetchLikeCount();
       },
       (error) => {
         console.error('Error while liking post:', error);
         // You can handle error here
       }
-    ); this.fetchLikeCount();
+    ); 
   }
 
   changeLikeCheckedValue() {
@@ -84,6 +98,8 @@ export class PostFooterComponent implements OnInit {
     this.likeChecked = !this.likeChecked;
     setTimeout(() => (this.pulse = false), 300);
   }
+
+
   redirectToReportForm() {
     // Navigate to the report form component
     this.router.navigate(['/report',this.postId]);
@@ -130,6 +146,19 @@ export class PostFooterComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching comments:', error);
+      }
+    );
+  }
+  
+  bookmarkPost() {
+    this.bookmarkService.bookmarkPost(this.postId , this.userId).subscribe(
+      response => {
+        console.log('Post bookmarked successfully:', response);
+        // Handle success (e.g., show a success message)
+      },
+      error => {
+        console.error('Error bookmarking post:', error);
+        // Handle error (e.g., show an error message)
       }
     );
   }

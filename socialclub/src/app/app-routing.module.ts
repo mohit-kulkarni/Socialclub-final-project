@@ -13,6 +13,7 @@ import { NavLayoutComponent } from './components/nav-layout/nav-layout.component
 import { AuthGuard } from './guards/services/auth.guard';
 import { ReportComponent } from './components/report/report.component';
 import { ForgetpswdComponent } from './components/forgetpswd/forgetpswd.component';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
       {
         path: 'explore',
         component: ExploreComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'bookmark',
+        component: BookmarkComponent,
         canActivate: [AuthGuard],
       },
       {
