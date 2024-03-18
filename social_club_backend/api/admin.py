@@ -31,6 +31,14 @@ class PostAdmin(admin.ModelAdmin):
             'location',
             'id',
     ]
+    
+@admin.register(Story)
+class StoryAdmin(admin.ModelAdmin):
+        list_display = [
+                'user',
+                'created_at',
+                
+        ]
 
 @admin.register(Report)
 class ReportAdmin(admin.ModelAdmin):

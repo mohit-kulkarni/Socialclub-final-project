@@ -9,7 +9,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ['id', 'user', 'username', 'email', 'profile_pic']  # Include only necessary fields
 
 
 
@@ -37,6 +37,13 @@ class BookmarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
         fields = ['user', 'post', 'created_at']    
+class StorySerializer(serializers.ModelSerializer):
+    user = UserProfileSerializer(read_only=True)
+    class Meta:
+        model = Story
+        fields = '__all__'
+
+        
 # class PostSerializer(serializers.ModelSerializer):
 #     user = serializers.SlugRelatedField(
 #         queryset = UserProfile.objects.all(),

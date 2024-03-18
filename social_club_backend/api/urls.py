@@ -46,6 +46,8 @@ urlpatterns=[
     # path('follower/',views.followerApi),
 
     # path('SaveFile$', views.SaveFile)
+    path('stories/', StoryListCreateAPIView.as_view(), name='story-list-create'),
+    path('stories/<int:pk>/', StoryRetrieveUpdateDestroyAPIView.as_view(), name='story-detail')
 ]
 urlpatterns += router.urls
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

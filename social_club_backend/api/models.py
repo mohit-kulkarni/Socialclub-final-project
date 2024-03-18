@@ -6,6 +6,7 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.utils import timezone
+from datetime import timedelta
 # from post.models import NewPost
 
 
@@ -20,7 +21,7 @@ class UserProfile(models.Model):
     GENDER_CHOICES = [('F', 'Female'),('M', 'Male'),('O', 'Other'),]
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
     is_approved = models.BooleanField(default=False)
-    profile_pic = models.FileField(upload_to='public/static/profile_pictures/', default='profile_pictures/no_user.jpg')
+    profile_pic = models.FileField(upload_to='public/static/profile_pictures/', default='public/static/profile_pictures/no_user.jpg')
     created_on = models.DateTimeField(default=timezone.now)
     token = models.OneToOneField(Token, on_delete=models.CASCADE)
 
@@ -42,6 +43,46 @@ class NewPost(models.Model):
 
     def __str__(self):
         return f"Post by {self.username}"
+    
+########### STORY ###########
+class Story(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    caption = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to='stories/images/', blank=True, null=True)
+    video = models.FileField(upload_to='stories/videos/', blank=True, null=True)
+    created_at = models.DateTimeField( default=timezone.now)
+    
+    def is_valid(self):
+        return self.created_at >= timezone.now() - timedelta(hours=24)
+
+    def __str__(self):
+        return f"Story by {self.user.username}"
+    
+    class Meta:
+        verbose_name = 'Story'
+        verbose_name_plural = 'Stories'
+    
+########################################################################################
+############################# NEW POST WITH MULTIPLE FILES #############################
+########################################################################################
+
+# class NewPost(models.Model):
+#     username = models.CharField(max_length=1002, blank=True)
+#     caption = models.TextField()
+#     location = models.CharField(max_length=100, blank=True, null=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+
+#     def __str__(self):
+#         return f"Post by {self.username}"
+
+# class PostMedia(models.Model):
+#     post = models.ForeignKey(NewPost, related_name='media', on_delete=models.CASCADE)
+#     file = models.FileField(upload_to='public/static/posts/')
+
+########################################################################################
+########################################################################################
+########################################################################################
+
     
 class FriendRequest(models.Model):
     STATUS_CHOICES = [

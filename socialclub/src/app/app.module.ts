@@ -37,6 +37,8 @@ import { ReportComponent } from './components/report/report.component';
 import { ForgetpswdComponent } from './components/forgetpswd/forgetpswd.component';
 import { FriendRequestService } from './services/friend-request.service';
 import { BookmarkComponent } from './components/bookmark/bookmark.component';
+import { StoriesViewComponent } from './components/stories-view/stories-view.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { BookmarkComponent } from './components/bookmark/bookmark.component';
     ReportComponent,
     ForgetpswdComponent,
     BookmarkComponent,
+    StoriesViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,7 @@ import { BookmarkComponent } from './components/bookmark/bookmark.component';
     MenuModule,
     DropdownModule,
   ],
-  providers: [CommentService, MessageService],
+  providers: [CommentService, MessageService, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,10 +1,45 @@
-<div id="stories">
+<!-- <div id="stories">
   <div class="stories-container">
     <div class="story" *ngFor="let user of users">
-      <div class="story-user-img">
-        <img [src]="generateImageLink(user.profile_pic)" [alt]="user.profile_pic">
+      <div class="story-user-img" (click)="openStoryView(user)">
+        <img
+          [src]="generateImageLink(user.profile_pic)"
+          [alt]="user.profile_pic"
+        />
       </div>
       <span class="story-username">{{ user.username }}</span>
+    </div>
+  </div>
+</div> -->
+
+<div id="stories">
+  <div class="stories-container">
+    <div class="story">
+      <div class="story-user-img-new">
+        <img [src]="userImageSource" [alt]="userImageSource" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          fill="currentColor"
+          class="bi bi-plus-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"
+          />
+        </svg>
+      </div>
+      <span class="story-username">Your Story</span>
+    </div>
+    <div class="story" *ngFor="let story of stories">
+      <div class="story-user-img" (click)="openStoryView(story)">
+        <img
+          [src]="generateImageLink(story.user.profile_pic)"
+          [alt]="story.image"
+        />
+      </div>
+      <span class="story-username">{{ story.user.username }}</span>
     </div>
   </div>
 </div>

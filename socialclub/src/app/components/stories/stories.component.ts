@@ -1,7 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../interfaces/user';
 import { UserService } from '../../services/user.service';
-// import * as faker from 'faker';
+import { Story } from '../../interfaces/story';
+import { StoryService } from '../../services/story.service';
+import { MatDialog } from '@angular/material/dialog';
+import { StoriesViewComponent } from '../stories-view/stories-view.component';
 
 @Component({
   selector: 'app-stories',
@@ -10,33 +13,55 @@ import { UserService } from '../../services/user.service';
 })
 export class StoriesComponent implements OnInit {
   users: User[] | any = [];
+  stories: Story[];
   imageLink: string;
+  noUser = '../../../assets/img/no_user.jpg';
+  userImageSource = `http://localhost:8000/${sessionStorage.getItem(
+    'profile_pic'
+  )}`;
+  userUsername = sessionStorage.getItem('username');
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private storyService: StoryService,
+    private dialog: MatDialog
+  ) {}
 
-  generateStories(): User[] {
-    let storiesQuantity = 0;
-    let users: User[] = [];
-
-    for (let i = 0; i < storiesQuantity; i++) {
-      users.push({
-        username: 'Username',
-        profile_pic: '../../../assets/img/no_user.jpg',
-      });
-    }
-
-    return users;
-  }
+  // fetchStories(): void {
+  //   this.userService.getAllUsers().subscribe(
+  //     (data) => {
+  //       this.users = data;
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching users:', error);
+  //     }
+  //   );
+  // }
 
   fetchStories(): void {
-    this.userService.getAllUsers().subscribe(
-      (data) => {
-        this.users = data;
+    this.storyService.getValidStories().subscribe(
+      (stories) => {
+        this.stories = stories;
+        console.log(`Stories:`);
+        console.log(stories);
       },
       (error) => {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching stories:', error);
       }
     );
+  }
+
+  openStoryView(story: any) {
+    const dialogRef = this.dialog.open(StoriesViewComponent, {
+      width: '600px',
+      data: { story: story }, // Pass the selected story as data
+      panelClass: 'custom-dialog-container',
+    });
+
+    // Subscribe to the dialog after it's closed
+    dialogRef
+      .afterClosed()
+      .subscribe(() => console.log('The dialog was closed'));
   }
 
   generateImageLink(imageSource): string {
@@ -45,6 +70,8 @@ export class StoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchStories();
+    console.log(`fetching stories oninit`);
+
     // this.imageLink = this.generateImageLink()
   }
 }

@@ -229,6 +229,69 @@ class PostDetailView(View):
         # Return serialized post data as JSON response
         return JsonResponse(serializer.data)
     
+# class StoryListCreateAPIView(generics.ListCreateAPIView):
+    
+#     serializer_class = StorySerializer
+#     permission_classes = [IsAuthenticated]  # Only authenticated users can access stories
+
+#     def get_queryset(self):
+#         user = self.request.user
+#         # Filter stories based on whether the viewer is a friend of the story creator
+#         # Assuming you have a friendship model called Friendship with user1 and user2 fields
+#         friends = Friendship.objects.filter(Q(user1=user) | Q(user2=user))
+#         friend_user_ids = list(friends.values_list('user1_id', flat=True)) + list(friends.values_list('user2_id', flat=True))
+        
+#         # # Retrieve stories with complete user objects (using prefetching)
+#         # stories = Story.objects.filter(user_id__in=friend_user_ids).prefetch_related('user')
+
+#         # # Iterate and populate user object in each story instance
+#         # for story in stories:
+#         #     story.user = get_object_or_404(User, pk=story.user_id)
+
+
+#         # return stories
+#         return Story.objects.filter(user_id__in=friend_user_ids)
+
+class StoryListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = StorySerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        user_id = user.id
+        print("user------------->>", user.id)
+        # friends = Friendship.objects.filter(Q(user1=user) | Q(user2=user))
+        # friend_user_ids = list(friends.values_list('user1_id', flat=True)) + list(friends.values_list('user2_id', flat=True))
+        # Fetch friendships where the user is user1
+        user1_friendships = Friendship.objects.filter(user1=user_id)
+        user1_friend_user_ids = list(user1_friendships.values_list('user2_id', flat=True))
+        print("User 1 friends=================>", user1_friend_user_ids, user1_friendships)
+        
+        # Fetch friendships where the user is user2
+        user2_friendships = Friendship.objects.filter(user2=user_id)
+        user2_friend_user_ids = list(user2_friendships.values_list('user1_id', flat=True))
+        print("User 2 friends<=================", user2_friend_user_ids, user2_friendships)
+        
+        # Combine friend user IDs from both sides of friendships
+        friend_user_ids = user1_friend_user_ids + user2_friend_user_ids
+        print("friend_user_ids::::::::::>>>>>>>>>>>", friend_user_ids)
+        # Filter stories based on friend user IDs
+        return Story.objects.filter(user_id__in=friend_user_ids)
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset, many=True)
+        # Manually include user details in each serialized story
+        serialized_data = []
+        for story_data in serializer.data:
+            user_data = story_data.pop('user')  # Remove user data from story data
+            story_data['user'] = user_data  # Add user data as a separate key
+            serialized_data.append(story_data)
+        return Response(serialized_data)
+
+class StoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Story.objects.all()
+    serializer_class = StorySerializer
 
 class BookmarkCreateAPIView(generics.CreateAPIView):
     queryset = Bookmark.objects.all()
