@@ -8,7 +8,6 @@ import { User } from '../../../interfaces/user';
 import { PostService } from '../../../services/post.service';
 import { BookmarkService } from '../../../services/bookmark.service';
 
-
 CommentService;
 @Component({
   selector: 'app-post-footer',
@@ -76,7 +75,6 @@ export class PostFooterComponent implements OnInit {
         // You can handle error here
       }
     );
-  
   }
   likePost() {
     this.likeService.likePost(this.postId, this.userId).subscribe(
@@ -90,7 +88,7 @@ export class PostFooterComponent implements OnInit {
         console.error('Error while liking post:', error);
         // You can handle error here
       }
-    ); 
+    );
   }
 
   changeLikeCheckedValue() {
@@ -99,10 +97,9 @@ export class PostFooterComponent implements OnInit {
     setTimeout(() => (this.pulse = false), 300);
   }
 
-
   redirectToReportForm() {
     // Navigate to the report form component
-    this.router.navigate(['/report',this.postId]);
+    this.router.navigate(['/report', this.postId]);
   }
   submitComment() {
     alert('Comment posted successfully!');
@@ -149,15 +146,17 @@ export class PostFooterComponent implements OnInit {
       }
     );
   }
-  
+
   bookmarkPost() {
-    this.bookmarkService.bookmarkPost(this.postId , this.userId).subscribe(
-      response => {
+    this.bookmarkService.bookmarkPost(this.postId, this.userId).subscribe(
+      (response) => {
         console.log('Post bookmarked successfully:', response);
+        alert(`Bookmarked Successfully!!`);
         // Handle success (e.g., show a success message)
       },
-      error => {
+      (error) => {
         console.error('Error bookmarking post:', error);
+        alert(`Post already bookmarked!`);
         // Handle error (e.g., show an error message)
       }
     );
