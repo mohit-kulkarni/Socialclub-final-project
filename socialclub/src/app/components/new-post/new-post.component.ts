@@ -108,11 +108,12 @@ export class NewPostComponent implements AfterViewInit {
     this.newPostService.postData(formData).subscribe(
       (response) => {
         console.log(response.message);
+        window.alert('Post created successfully!');
         // Reset form fields on successful submission if needed
-        // this.caption = '';
-        // this.location = '';
-        // this.mediaFiles = [];
-        // this.mediaPreviews = [];
+        this.caption = '';
+        this.location = '';
+        this.mediaFiles = [];
+        this.mediaPreviews = [];
       },
       (error) => {
         console.error(error);

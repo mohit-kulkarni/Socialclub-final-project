@@ -36,6 +36,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ReportComponent } from './components/report/report.component';
 import { ForgetpswdComponent } from './components/forgetpswd/forgetpswd.component';
 import { FriendRequestService } from './services/friend-request.service';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { FriendRequestService } from './services/friend-request.service';
     FooterComponent,
     ReportComponent,
     ForgetpswdComponent,
+    BookmarkComponent,
   ],
   imports: [
     BrowserModule,

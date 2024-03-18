@@ -31,7 +31,12 @@ class PostSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-        
+
+class BookmarkSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Bookmark
+        fields = ['user', 'post', 'created_at']    
 # class PostSerializer(serializers.ModelSerializer):
 #     user = serializers.SlugRelatedField(
 #         queryset = UserProfile.objects.all(),
@@ -46,7 +51,7 @@ class PostSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment  # Change from Comments to Comment
-        fields = ['user', 'post', 'text']
+        fields = ['id','user', 'post', 'text']
  
 
 class ReportSerializer(serializers.ModelSerializer):

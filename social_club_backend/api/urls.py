@@ -35,6 +35,11 @@ urlpatterns=[
     # path('api/is-friend/batch/', check_is_friend_batch),
     path('is-friend/<int:user_id>/', IsFriendAPIView.as_view(), name='is_friend'),
     path('user-profile/<int:user_id>/', UserProfileDetailView.as_view(), name='user_profile_detail'),
+    # Adjust your URL configuration to capture a user's PK
+    path('bookmarks/', BookmarkCreateAPIView.as_view(), name='create_bookmark'),
+    path('delbookmarks/<int:pk>/', BookmarkDeleteAPIView.as_view(), name='delete_bookmark'),
+    path('bookmarks/<int:user_id>/', UserBookmarkDetailAPIView.as_view(), name='user_bookmarks_detail'),
+
     # path('post/',postApi),  
     # path('comment/',commentApi),
     # path('like/',likeApi),

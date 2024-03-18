@@ -216,7 +216,7 @@ class PostListCreate(generics.ListCreateAPIView):
     #         serializer.save()
     #         return Response(serializer.data, status=status.HTTP_201_CREATED)
     #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
 
 class PostDetailView(View):
     def get(self, request, pk):
@@ -228,6 +228,47 @@ class PostDetailView(View):
         
         # Return serialized post data as JSON response
         return JsonResponse(serializer.data)
+    
+
+class BookmarkCreateAPIView(generics.CreateAPIView):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
+    permission_classes = [AllowAny]
+
+    
+    def get(self, request, *args, **kwargs):
+        # Retrieve all bookmarks
+        bookmarks = self.get_queryset()
+        serializer = self.get_serializer(bookmarks, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        # Handle POST request to create a new bookmark
+        return self.create(request, *args, **kwargs)
+
+   
+
+class BookmarkDeleteAPIView(generics.DestroyAPIView):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkSerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        bookmark = get_object_or_404(self.get_queryset(), pk=self.kwargs.get('pk'), user=request.user)
+        bookmark.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class UserBookmarkDetailAPIView(generics.ListAPIView):
+    serializer_class = BookmarkSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        # Retrieve user ID from URL kwargs
+        user_id = self.kwargs.get('user_id')
+        # Filter bookmarks based on the user ID
+        return Bookmark.objects.filter(user_id=user_id)
+    
+    
 class FriendPostList(generics.ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [AllowAny]
@@ -481,6 +522,10 @@ def update_password(request):
         user.set_password(new_password)
         user.save()
         return JsonResponse({'message': 'password updated successfully'})
+    
+
+
+
     
 # class PostViewSet(viewsets.ModelViewSet):
 #     queryset = Post.objects.all().order_by('-created_on')
