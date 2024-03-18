@@ -91,14 +91,14 @@
     </span>
   </div>
   
-  <div class="comments">
+  <div class="comments" *ngIf="commentsWithUsername && commentsWithUsername.length > 0">
     <span class="comment" *ngFor="let comment of commentsWithUsername">
       <span class="comment-author">{{ comment.username }}</span>
       <span class="comment-content">{{ comment.text }}</span>
     </span>
   </div>
 
-  <span class="timestamp">1 Hour ago</span>
+  <span class="timestamp">{{getRelativeTime()}}</span>
 </div>
 <div class="post-caption" *ngIf="imgIsPresent">{{ caption }}</div>
 <div class="new-comment">

@@ -144,6 +144,30 @@ class UserProfileDetailView(generics.RetrieveUpdateAPIView):
         self.perform_update(serializer)
         return Response(serializer.data) 
    
+   
+##################################
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def getUserDetails(request):
+    if request.method == 'GET':
+        username = request.GET.get('username', None)
+        email = request.GET.get('email', None)
+
+        if not username and not email:
+            return JsonResponse({'error': 'Username or email parameter is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            if username:
+                user_profile = UserProfile.objects.get(username=username)
+            else:
+                user_profile = UserProfile.objects.get(email=email)
+
+            serializer = UserProfileSerializer(user_profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except UserProfile.DoesNotExist:
+            return JsonResponse({'error': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
 ######## to GET all users ########
 
 @csrf_exempt 
@@ -499,11 +523,55 @@ class IsFriendAPIView(APIView):
 
 ################ COMMENT ##################
 
+# @api_view(['GET', 'POST'])
+# @permission_classes([AllowAny])
+# def commentApi(request):
+#     if request.method == 'GET':
+#         comments = Comment.objects.all()
+#         serializer = CommentSerializer(comments, many=True)
+#         return Response(serializer.data)
+
+#     elif request.method == 'POST':
+#         user_id = request.data.get("user")
+#         post_id = request.data.get("post")
+#         content = request.data.get("text")
+
+#         try:
+#             user = User.objects.get(id=user_id)
+#             post = NewPost.objects.get(id=post_id)
+
+#             body = {
+#                 'user': user.id,
+#                 'post': post.id,
+#                 'text': content
+#             }
+
+#             serializer = CommentSerializer(data=body)
+#             if serializer.is_valid():
+#                 serializer.save()
+#                 return Response(serializer.data, status=status.HTTP_201_CREATED)
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#         except User.DoesNotExist:
+#             return Response({"error": "User does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+#         except NewPost.DoesNotExist:
+#             return Response({"error": "Post does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+
+#     return Response({"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST)
+
 @api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
 def commentApi(request):
     if request.method == 'GET':
-        comments = Comment.objects.all()
+        # Retrieve the post ID from the query parameters
+        post_id = request.query_params.get('post')
+        if post_id is not None:
+            # Filter comments based on the provided post ID
+            comments = Comment.objects.filter(post=post_id)
+        else:
+            # If post ID is not provided, return all comments
+            comments = Comment.objects.all()
+            
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
@@ -534,6 +602,7 @@ def commentApi(request):
             return Response({"error": "Post does not exist"}, status=status.HTTP_400_BAD_REQUEST)
 
     return Response({"error": "Invalid request method"}, status=status.HTTP_400_BAD_REQUEST)
+
     
 
 class Like(generics.ListCreateAPIView):

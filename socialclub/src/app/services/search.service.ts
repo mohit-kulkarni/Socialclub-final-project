@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchService {
-  private apiUrl = 'http://127.0.0.1:8000/api/user-details/';
+  private apiUrl = 'http://127.0.0.1:8000/api/user-detail/';
 
   constructor(private http: HttpClient) {}
 

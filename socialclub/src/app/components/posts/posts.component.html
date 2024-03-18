@@ -1,6 +1,6 @@
 <div *ngIf="posts?.length; else noPosts" class="post-display">
   <div class="post" *ngFor="let post of posts">
-    <app-post-header [username]="post.username" [userImageSource]="" />
+    <app-post-header [username]="post.username" />
 
     <app-post-image
       [imageSource]="post.image_or_video"
@@ -15,6 +15,7 @@
       [imgIsPresent]="post.image_or_video"
       [username]="post.username"
       [caption]="post.caption"
+      [created_at]="post.created_at"
     />
   </div>
 </div>

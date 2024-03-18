@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { Post } from '../../interfaces/post';
 import { Observable, of, switchMap } from 'rxjs';
 import { User } from '../../interfaces/user';
@@ -13,6 +12,7 @@ import { ApiService } from '../../services/api.service';
 export class postsComponent implements OnInit {
   posts: Post[];
   error: string | null = null;
+  userOfPosts: User
 
   constructor(private apiService: ApiService) {}
 
@@ -31,11 +31,13 @@ export class postsComponent implements OnInit {
       next: (data) => {
         this.posts = data;
         console.log('Posts of friends: ', this.posts);
-        // console.log(this.posts);
+        console.log(this.posts);
       },
       error: (error) => {
         this.error = error.message || 'An error occurred while fetching data.';
       },
     });
   }
+
+
 }

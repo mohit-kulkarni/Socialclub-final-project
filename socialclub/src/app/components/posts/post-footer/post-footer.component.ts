@@ -7,6 +7,7 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../interfaces/user';
 import { PostService } from '../../../services/post.service';
 import { BookmarkService } from '../../../services/bookmark.service';
+import { formatDistanceToNow } from 'date-fns';
 
 CommentService;
 @Component({
@@ -20,6 +21,7 @@ export class PostFooterComponent implements OnInit {
   @Input() caption: string;
   @Input() imgIsPresent: string;
   @Input() isLiked: boolean;
+  @Input() created_at: Date;
 
   userId: any = sessionStorage.getItem('userId');
 
@@ -47,7 +49,16 @@ export class PostFooterComponent implements OnInit {
     this.fetchComments();
     this.fetchLikeCount();
     this.checkLikedState();
+
+    setInterval(() => {
+      this.getRelativeTime();
+    }, 60000);
   }
+
+  getRelativeTime() {
+    return formatDistanceToNow(this.created_at, { addSuffix: true });
+  }
+
   checkLikedState() {
     // Check if the post is liked by this user
     const likedPosts = JSON.parse(localStorage.getItem('likedPosts') || '{}');
@@ -66,7 +77,7 @@ export class PostFooterComponent implements OnInit {
   fetchLikeCount(): void {
     this.postService.getPostById(this.postId).subscribe(
       (response) => {
-        console.log('Post liked successfully!', response);
+        // console.log('Post liked successfully!', response);
         this.likeCount = response.likes_count;
         // You can handle success response here
       },
@@ -79,7 +90,7 @@ export class PostFooterComponent implements OnInit {
   likePost() {
     this.likeService.likePost(this.postId, this.userId).subscribe(
       (response) => {
-        console.log('Post liked successfully!', response);
+        // console.log('Post liked successfully!', response);
         // You can handle success response here
         this.updateLikedState(true);
         this.fetchLikeCount();
@@ -106,12 +117,12 @@ export class PostFooterComponent implements OnInit {
     // Assuming you have the postId available, replace 'postId' with the actual postId
     const postId = this.postId; // Replace with the actual post ID
     const userId = this.userId;
-    console.log(userId, 'user id');
-    console.log('userid: ' + userId + ', postid: ' + postId);
+    // console.log(userId, 'user id');
+    // console.log('userid: ' + userId + ', postid: ' + postId);
 
     this.commentService.postComment(userId, postId, this.comment).subscribe(
       (response) => {
-        console.log('Comment posted successfully:', response);
+        // console.log('Comment posted successfully:', response);
         this.comments.push(`${this.comment}`);
         this.comment = ''; // Clear the input field after posting
       },
@@ -123,11 +134,13 @@ export class PostFooterComponent implements OnInit {
 
   fetchComments() {
     const postId = this.postId;
+    // console.log(`PostID: ${postId}`);
+
     this.commentService.getComments(postId).subscribe(
       (data) => {
         // Assuming your comments are stored as strings, adjust based on your actual data structure
         this.commentsWithUsername = []; // Clear the array before fetching new comments
-        console.log('comments for', postId, data);
+        // console.log('comments for', postId, data);
 
         data.forEach((comment) => {
           // Fetch the username for each comment
