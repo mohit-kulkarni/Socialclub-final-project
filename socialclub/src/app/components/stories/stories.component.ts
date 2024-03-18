@@ -55,12 +55,13 @@ export class StoriesComponent implements OnInit {
     const dialogRef = this.dialog.open(StoriesViewComponent, {
       width: '600px',
       data: { story: story }, // Pass the selected story as data
+      panelClass: 'custom-dialog-container',
     });
 
     // Subscribe to the dialog after it's closed
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+    dialogRef
+      .afterClosed()
+      .subscribe(() => console.log('The dialog was closed'));
   }
 
   generateImageLink(imageSource): string {

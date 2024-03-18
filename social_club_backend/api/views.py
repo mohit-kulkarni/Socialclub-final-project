@@ -217,19 +217,23 @@ class StoryListCreateAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
+        user_id = user.id
+        print("user------------->>", user.id)
         # friends = Friendship.objects.filter(Q(user1=user) | Q(user2=user))
         # friend_user_ids = list(friends.values_list('user1_id', flat=True)) + list(friends.values_list('user2_id', flat=True))
         # Fetch friendships where the user is user1
-        user1_friendships = Friendship.objects.filter(user1=user)
+        user1_friendships = Friendship.objects.filter(user1=user_id)
         user1_friend_user_ids = list(user1_friendships.values_list('user2_id', flat=True))
+        print("User 1 friends=================>", user1_friend_user_ids, user1_friendships)
         
         # Fetch friendships where the user is user2
-        user2_friendships = Friendship.objects.filter(user2=user)
+        user2_friendships = Friendship.objects.filter(user2=user_id)
         user2_friend_user_ids = list(user2_friendships.values_list('user1_id', flat=True))
+        print("User 2 friends<=================", user2_friend_user_ids, user2_friendships)
         
         # Combine friend user IDs from both sides of friendships
         friend_user_ids = user1_friend_user_ids + user2_friend_user_ids
-        
+        print("friend_user_ids::::::::::>>>>>>>>>>>", friend_user_ids)
         # Filter stories based on friend user IDs
         return Story.objects.filter(user_id__in=friend_user_ids)
 

@@ -1,4 +1,4 @@
-import { User } from './auth';
+import { User } from './user';
 export interface Story {
   caption: string;
   image?: string; // URL of the image or video
