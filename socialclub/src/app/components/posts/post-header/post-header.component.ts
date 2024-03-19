@@ -11,6 +11,7 @@ export class postHeaderComponent implements OnInit {
   @Input() username!: any;
   @Input() user!: any;
   imageLink: string;
+  headUser;
 
   constructor(private userService: UserService) {}
 
@@ -22,6 +23,12 @@ export class postHeaderComponent implements OnInit {
   }
 
   fetchImages() {
-    this.userService.getUserByUserName
+    this.userService.getUserByUserName(this.username).subscribe({
+      next: (user) => {
+        this.headUser = user;
+        this.userImageSource = this.headUser.profile_pic;
+        console.log(this.headUser);
+      },
+    });
   }
 }
