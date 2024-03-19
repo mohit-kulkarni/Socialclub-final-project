@@ -3,7 +3,10 @@
     <span class="user-img">
       <img [src]="imageLink" alt="" />
     </span>
-    <span class="user-name">{{ username }}</span>
+    <div class="username-field">
+      <span class="user-name">{{ username }}</span>
+      <span class="location">{{ location }}</span>
+    </div>
   </div>
   <div class="actions">
     <button class="btn-actions">

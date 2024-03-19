@@ -1,6 +1,6 @@
 <div *ngIf="posts?.length; else noPosts" class="post-display">
   <div class="post" *ngFor="let post of posts">
-    <app-post-header [username]="post.username" />
+    <app-post-header [username]="post.username" [location]="post.location" />
 
     <app-post-image
       [imageSource]="post.image_or_video"

@@ -39,6 +39,7 @@ import { FriendRequestService } from './services/friend-request.service';
 import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { StoriesViewComponent } from './components/stories-view/stories-view.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { StoriesNewComponent } from './components/stories-new/stories-new.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ForgetpswdComponent,
     BookmarkComponent,
     StoriesViewComponent,
+    StoriesNewComponent,
   ],
   imports: [
     BrowserModule,

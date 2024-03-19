@@ -53,7 +53,7 @@ export class ExploreComponent implements OnInit {
           console.log('user:', user);
 
           // Set the image URL in the friend request object
-          this.imageLink = this.generateImageLink(user.profile_pic);
+          // this.imageLink = this.generateImageLink(user.profile_pic);
         },
         (error) => {
           console.error('Error fetching user details:', error);

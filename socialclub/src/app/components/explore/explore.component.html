@@ -4,32 +4,35 @@
     <br />
     <div class="follow-requests" *ngIf="friendRequests.length > 0">
       <div class="follow-request" *ngFor="let request of friendRequests">
-        <img [src]="imageLink" alt="User Avatar" />
+        <img
+          [src]="generateImageLink(request.from_user.profile_pic)"
+          alt="User Avatar"
+        />
         <div class="username">
           <p class="username">{{ request.from_user.username }}</p>
           <p class="timestamp">
-          {{ getRelativeTime(request.created_at) }}
-        </p>
+            {{ getRelativeTime(request.created_at) }}
+          </p>
+        </div>
+        <button
+          title="accept"
+          type="button"
+          (click)="acceptFriendRequest(request.id)"
+        >
+          Accept
+        </button>
+        <button
+          title="reject"
+          type="button"
+          (click)="rejectFriendRequest(request.id)"
+        >
+          Reject
+        </button>
       </div>
-      <button
-        title="accept"
-        type="button"
-        (click)="acceptFriendRequest(request.id)"
-      >
-        Accept
-      </button>
-      <button
-        title="reject"
-        type="button"
-        (click)="rejectFriendRequest(request.id)"
-      >
-        Reject
-      </button>
     </div>
-  </div>
-  <div *ngIf="friendRequests.length === 0">
-    <p>No pending follow requests.</p>
-  </div>
+    <div *ngIf="friendRequests.length === 0">
+      <p>No pending follow requests.</p>
+    </div>
   </div>
 
   <app-aside-data></app-aside-data>

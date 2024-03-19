@@ -9,6 +9,7 @@ import { UserService } from '../../../services/user.service';
 export class postHeaderComponent implements OnInit {
   userImageSource!: any;
   @Input() username!: any;
+  @Input() location?: string;
   @Input() user!: any;
   imageLink: string;
   headUser;

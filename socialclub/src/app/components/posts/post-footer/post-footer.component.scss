@@ -1,142 +1,140 @@
 $post-footer-padding: 10px;
 
 .post-footer {
-    padding: $post-footer-padding;
+  padding: $post-footer-padding;
 
-    .actions {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        .actions-container .action-button {
-            background: none;
-            border: none;
-            font-size: 0;
-            padding: 0;
-            margin: 0;
+    .actions-container .action-button {
+      background: none;
+      border: none;
+      font-size: 0;
+      padding: 0;
+      margin: 0;
 
-            &+.action-button {
-                margin-left: 10px;
-            }
+      & + .action-button {
+        margin-left: 10px;
+      }
 
-            &:hover {
-                cursor: pointer;
-            }
-        }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .likes {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+
+    .user-img {
+      display: flex;
+
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
     }
 
-    .likes {
-        display: flex;
-        align-items: center;
-        margin-top: 8px;
+    .likedby {
+      div:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
 
-        .user-img {
-            display: flex;
+  .comments {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
 
-            img {
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                cursor: pointer;
-            }
+    .comment {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+
+      .comment-author {
+        font-weight: 600;
+
+        &:hover {
+          text-decoration: underline;
         }
+      }
 
-        .likedby {
-            margin-left: 10px;
+      .comment-content {
+        margin-left: 3px;
+      }
+    }
+  }
 
-            b:hover {
-                text-decoration: underline;
-                cursor: pointer;
-            }
-        }
+  .timestamp {
+    display: inline-block;
+    margin-top: 10px;
+    text-transform: uppercase;
+    color: var(--secondary-text-color);
+    font-size: 10px;
+  }
+
+  .new-comment {
+    display: flex;
+    height: 56px;
+    align-items: center;
+    border-top: 1px solid #efefef;
+    padding: 0 16px;
+
+    button {
+      border: none;
+      background: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .comments {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
+    button.post {
+      color: var(--blue);
+      font-weight: 600;
+      transition: all 0.1s;
 
-        .comment {
-            display: flex;
-            align-items: center;
-            justify-content: start;
+      &:disabled {
+        cursor: default;
+        color: var(--filtered-blue);
+      }
 
-            .comment-author {
-                font-weight: 600;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-
-            .comment-content {
-                margin-left: 3px;
-            }
-        }
+      &:hover {
+        cursor: pointer;
+      }
     }
 
-    .timestamp {
-        display: inline-block;
-        margin-top: 10px;
-        text-transform: uppercase;
-        color: var(--secondary-text-color);
-        font-size: 10px;
+    .comment-input {
+      flex-grow: 1;
+      margin: 10px;
+      border: none;
+      outline: none;
+      width: 100%;
     }
+  }
 
-    .new-comment {
-        display: flex;
-        height: 56px;
-        align-items: center;
-        border-top: 1px solid #efefef;
-        padding: 0 16px;
+  .pulse {
+    animation-name: pulse;
+    animation-duration: 0.3s;
 
-        button {
-            border: none;
-            background: none;
-            padding: 0;
-            margin: 0;
-        }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
 
-        button.post {
-            color: var(--blue);
-            font-weight: 600;
-            transition: all .1s;
+      50% {
+        transform: scale(1.2);
+      }
 
-            &:disabled {
-                cursor: default;
-                color: var(--filtered-blue);
-            }
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        .comment-input {
-            flex-grow: 1;
-            margin: 10px;
-            border: none;
-            outline: none;
-            width: 100%;
-        }
+      100% {
+        transform: scale(1);
+      }
     }
-
-    .pulse {
-        animation-name: pulse;
-        animation-duration: .3s;
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-    }
+  }
 }
