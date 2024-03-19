@@ -66,7 +66,10 @@ export class AsideDataComponent implements OnInit {
   }
 
   filterFriends(): void {
-    this.users = this.users.filter((user: User) => !user.isFriend);
+    const loggedInUser = sessionStorage.getItem('userId');
+    this.users = this.users.filter(
+      (user: User) => !user.isFriend && user.user !== +loggedInUser
+    );
     // console.log(this.users);
 
     // console.log('Not Friends: ', this.users);

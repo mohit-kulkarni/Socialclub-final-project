@@ -22,7 +22,7 @@ export class UserService {
 
   getAllUsers(): Observable<User[]> {
     console.log(`GET request sent to ${base_url}`);
-    return this.http.get<User[]>(`${base_url}`);
+    return this.http.get<User[]>(`http://127.0.0.1:8000/api/user-detail/`);
   }
 
   getUserById(userid: number): Observable<User> {

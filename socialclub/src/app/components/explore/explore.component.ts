@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { FriendRequestService } from '../../services/friend-request.service';
 import { User } from '../../interfaces/user';
 import { forkJoin } from 'rxjs';
+import { formatDistanceToNow } from 'date-fns';
 
 @Component({
   selector: 'app-explore',
@@ -21,6 +22,7 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPendingFriendRequests();
+    
   }
 
   getPendingFriendRequests(): void {
@@ -34,6 +36,12 @@ export class ExploreComponent implements OnInit {
         console.error('Failed to get friend requests', error);
       }
     );
+  }
+
+  getRelativeTime(time) {
+    return formatDistanceToNow(time, {
+      addSuffix: true,
+    });
   }
 
   fetchUserDetails(): void {

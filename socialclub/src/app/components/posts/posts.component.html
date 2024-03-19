@@ -6,7 +6,7 @@
       [imageSource]="post.image_or_video"
       *ngIf="post.image_or_video"
     />
-    
+
     <div class="post-caption" *ngIf="!post.image_or_video">
       {{ post.caption }}
     </div>
@@ -26,8 +26,8 @@
     <!-- <button class="load-more" (click)="fetchData()">Try Again</button> -->
     <div
       class="post-loader"
-      (click)="fetchData()"
-      [ngClass]="{ rotated: isRotated }"
+      (click)="fetchData(); toggleRotation()"
+      [ngClass]="{ rotate: isRotated }"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -12,7 +12,7 @@ import { ApiService } from '../../services/api.service';
 export class postsComponent implements OnInit {
   posts: Post[];
   error: string | null = null;
-  userOfPosts: User
+  userOfPosts: User;
 
   constructor(private apiService: ApiService) {}
 
@@ -24,6 +24,10 @@ export class postsComponent implements OnInit {
 
   toggleRotation() {
     this.isRotated = !this.isRotated;
+    // console.log(`Rotate: ${this.isRotated}`);
+    setInterval(() => {
+      this.isRotated = false;
+    }, 3000);
   }
 
   fetchData() {
@@ -38,6 +42,4 @@ export class postsComponent implements OnInit {
       },
     });
   }
-
-
 }

@@ -1,82 +1,170 @@
-$main-bg-color: #f0fcff; // Background color used consistently
-$primary-color: hsl(0, 0%, 100%); // Blue (assuming primary action color)
-$secondary-color: #4caf50; // Green (assuming secondary action color)
-$hover-color: darken(
-  $primary-color,
-  5%
-); // Darker variant of primary color for hover
+// $main-bg-color: #f0fcff; // Background color used consistently
+// $primary-color: hsl(0, 0%, 100%); // Blue (assuming primary action color)
+// $secondary-color: #4caf50; // Green (assuming secondary action color)
+// $hover-color: darken(
+//   $primary-color,
+//   5%
+// ); // Darker variant of primary color for hover
+
+// .explore {
+//   padding: 20px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   margin-top: 70px;
+
+//   // Improved mixin for cleaner and consistent button styles
+//   @mixin button-styles($background-color, $text-color, $hover-color) {
+//     background-color: $background-color;
+//     color: $text-color;
+//     border: none;
+//     border-radius: 50%;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+
+//     &:hover {
+//       background-color: $hover-color; // Use $hover-color for consistency
+//     }
+//   }
+
+//   h1 {
+//     font-size: 24px;
+//     margin-bottom: 20px;
+//   }
+
+//   .follow-requests {
+//     width: 500px;
+//     margin: 10px 0;
+
+//     .follow-request {
+//       display: flex;
+//       align-items: center;
+//       justify-content: space-between;
+//       margin: 20px;
+//       border: 2px solid #e2e0ab;
+//       background-color: $main-bg-color; // Match background color
+//       border-radius: 20px;
+//       padding: 10px;
+
+//       img {
+//         width: 75px;
+//         height: 75px;
+//         border-radius: 50%;
+//       }
+
+//       .username {
+//         font-weight: bold;
+//       }
+
+//       button {
+//         padding: 7px 10px;
+//         COLOR: black;
+
+//         // Use mixin with default colors
+//         // @include button-styles($main-bg-color, #999, $hover-color);
+//         @include button-styles($primary-color, #fff, hsl(122, 39%, 59%));
+
+//         &:first-child {
+//           margin-right: 10px;
+
+//           // Use mixin with primary color override
+//           @include button-styles($primary-color, #fff, hsl(122, 39%, 59%));
+//         }
+
+//         &:last-child {
+//           // Use mixin with secondary color override
+//           @include button-styles($primary-color, #fff, hsl(3, 100%, 50%));
+//         }
+//       }
+//     }
+//   }
+// }
 
 .explore {
-  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd; /* Thin border like notification section */
+  border-radius: 5px; /* Subtle border radius */
+  padding: 10px 15px; /* Add some padding for spacing */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 70px;
 
-  // Improved mixin for cleaner and consistent button styles
-  @mixin button-styles($background-color, $text-color, $hover-color) {
-    background-color: $background-color;
-    color: $text-color;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  .wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .follow-requests {
+      display: flex; /* Arrange requests side-by-side */
+      flex-wrap: wrap; /* Wrap requests when needed */
 
-    &:hover {
-      background-color: $hover-color; // Use $hover-color for consistency
+      .follow-request {
+        // width: calc(50% - 20px); /* Each request takes half the width */
+        margin: 10px; /* Add space between requests */
+        // background-color: #f5f5f5; /* Light gray background for content */
+        // border-radius: 5px; /* Match border radius of explore section */
+        display: flex; /* Arrange profile pic and content side-by-side */
+        align-items: center; /* Vertically center content within request */
+        border-bottom: 1px solid #dadada;
+        padding-bottom: 10px;
+
+        img {
+          width: 40px; /* Fixed width for profile picture */
+          height: 40px; /* Match width for a square image */
+          border-radius: 50%; /* Make profile picture circular */
+          margin-right: 10px; /* Add space between picture and content */
+        }
+
+        .username {
+          font-weight: bold; /* Username in bold like notifications */
+          font-size: 14px; /* Slightly smaller font size */
+          color: #333; /* Dark text for readability */
+          margin-bottom: 0px;
+          padding-right: 15px;
+
+          .timestamp {
+            font-weight: lighter;
+            font-size: 10px;
+          }
+        }
+
+        button {
+          margin-left: auto; /* Position buttons to the right */
+          padding: 5px 10px; /* Add padding for buttons */
+          border: none; /* Remove button border */
+          border-radius: 5px; /* Rounded corners for buttons */
+          font-size: 0.8rem; /* Smaller font size for a clean look */
+          cursor: pointer; /* Indicate clickable action */
+          font-weight: 600;
+          color: #0095f7; /* White text */
+          background-color: #fff;
+
+          &:first-child {
+            /* Style "Accept" button */
+            background-color: #26a6d1; /* Light blue like Instagram "Follow" button */
+          }
+
+          &:last-child {
+            /* Style "Reject" button */
+            // background-color: #ccc; /* Gray for "Reject" */
+            color: #333; /* Dark text */
+          }
+        }
+
+        &:hover {
+          .username {
+            text-decoration: underline; /* Underline username on hover */
+          }
+        }
+      }
     }
   }
 
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  .follow-requests {
-    width: 500px;
-    margin: 10px 0;
-
-    .follow-request {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 20px;
-      border: 2px solid #e2e0ab;
-      background-color: $main-bg-color; // Match background color
-      border-radius: 20px;
-      padding: 10px;
-
-      img {
-        width: 75px;
-        height: 75px;
-        border-radius: 50%;
-      }
-
-      .username {
-        font-weight: bold;
-      }
-
-      button {
-        padding: 7px 10px;
-        COLOR: black;
-
-        // Use mixin with default colors
-        // @include button-styles($main-bg-color, #999, $hover-color);
-        @include button-styles($primary-color, #fff, hsl(122, 39%, 59%));
-
-        &:first-child {
-          margin-right: 10px;
-
-          // Use mixin with primary color override
-          @include button-styles($primary-color, #fff, hsl(122, 39%, 59%));
-        }
-
-        &:last-child {
-          // Use mixin with secondary color override
-          @include button-styles($primary-color, #fff, hsl(3, 100%, 50%));
-        }
-      }
-    }
+  .no-requests p {
+    text-align: center; /* Center text for empty message */
+    margin-top: 10px; /* Add some space above message */
+    font-size: 13px; /* Slightly smaller font size */
+    color: #999; /* Lighter gray for a subtle look */
   }
 }
