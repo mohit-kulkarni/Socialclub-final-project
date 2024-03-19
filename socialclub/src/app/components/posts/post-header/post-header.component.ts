@@ -23,6 +23,12 @@ export class postHeaderComponent implements OnInit {
     return `http://localhost:8000${this.userImageSource}`;
   }
 
+  searchLocation(searchText: string) {
+    const searchTerm = searchText;
+    const encodedSearchTerm = encodeURIComponent(searchTerm);
+    window.open(`https://www.google.com/maps/search/${encodedSearchTerm}`);
+  }
+
   fetchImages() {
     this.userService.getUserByUserName(this.username).subscribe({
       next: (user) => {

@@ -164,7 +164,7 @@ export class PostFooterComponent implements OnInit {
     this.bookmarkService.bookmarkPost(this.postId, this.userId).subscribe(
       (response) => {
         console.log('Post bookmarked successfully:', response);
-        alert(`Bookmarked Successfully!!`);
+        // alert(`Bookmarked Successfully!!`);
         // Handle success (e.g., show a success message)
       },
       (error) => {
@@ -173,6 +173,13 @@ export class PostFooterComponent implements OnInit {
         // Handle error (e.g., show an error message)
       }
     );
+  }
+
+  toggleBookmark() {
+    console.log(this.saveChecked);
+
+    this.saveChecked = !this.saveChecked;
+    console.log(this.saveChecked);
   }
 
   private async fetchUsernameFromId(userId: number): Promise<string> {

@@ -42,7 +42,7 @@ export class ReportComponent implements OnInit {
       console.log(this.postId, 'post'); // For example, you can log it to the console
     });
 
-    const data = sessionStorage.getItem('userId');
+    const data = sessionStorage.getItem('user');
     console.log('data',data)
     this.userId = JSON.parse(data);
     console.log(this.userId, 'user');

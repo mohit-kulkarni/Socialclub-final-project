@@ -71,12 +71,14 @@ export class NavbarComponent {
     // Clear local storage, session storage, or cookies (choose the right approach)
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userData'); // Assuming you store user data here
+    localStorage.clear();
     this.router.navigate(['/login']); // Replace with your login route
     console.log('Logout user initiated!');
     // Or:
     // this.cookieService.delete('your_auth_cookie_name'); // If you use cookies
     // Reset any additional user-related state in your application
     this.tokenService.removeToken(); // Assuming you have a token service
+    window.location.reload();
     // this.authService.logout(); // If you use an authentication service
     // Redirect to login page or appropriate default route
     // Optionally, display a success message to the user

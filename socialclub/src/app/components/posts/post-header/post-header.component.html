@@ -5,7 +5,9 @@
     </span>
     <div class="username-field">
       <span class="user-name">{{ username }}</span>
-      <span class="location">{{ location }}</span>
+      <span class="location" (click)="searchLocation(location)">{{
+        location
+      }}</span>
     </div>
   </div>
   <div class="actions">

@@ -29,6 +29,7 @@ export class postsComponent implements OnInit {
       this.isRotated = false;
     }, 3000);
   }
+  
 
   fetchData() {
     this.apiService.getFriendsPosts().subscribe({

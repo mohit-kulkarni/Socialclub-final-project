@@ -54,9 +54,28 @@
           ></path>
         </svg>
       </button>
-
-      <button class="action-button" (click)="bookmarkPost()">
+      <button class="action-button" (click)="redirectToReportForm()">
         <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fill="none"
+          class="bi bi-flag"
+          viewBox="0 0 22 22"
+        >
+          <path
+            d="M9.61109 12.4L10.8183 18.5355C11.0462 19.6939 12.6026 19.9244 13.1565 18.8818L19.0211 7.84263C19.248 7.41555 19.2006 6.94354 18.9737 6.58417M9.61109 12.4L5.22642 8.15534C4.41653 7.37131 4.97155 6 6.09877 6H17.9135C18.3758 6 18.7568 6.24061 18.9737 6.58417M9.61109 12.4L18.9737 6.58417M19.0555 6.53333L18.9737 6.58417"
+            stroke="#000000"
+            stroke-width="1"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="actions-container">
+      <button class="action-button" (click)="bookmarkPost()">
+        <button class="action-button" (click)="toggleBookmark()"></button>
+        <svg
+          *ngIf="!saveChecked"
           xmlns="http://www.w3.org/2000/svg"
           width="22"
           height="22"
@@ -68,52 +87,52 @@
             d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
           />
         </svg>
-      </button>
-    </div>
-    <div class="actions-container">
-      <button class="action-button" (click)="redirectToReportForm()">
-        <button class="action-button" (click)="saveChecked = !saveChecked">
-          <svg
-            *ngIf="!saveChecked"
-            xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
-            fill="currentColor"
-            class="bi bi-flag"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21 21 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21 21 0 0 0 14 7.655V1.222z"
-            />
-          </svg>
-
-          <svg
-            *ngIf="saveChecked"
-            xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
-            fill="currentColor"
-            class="bi bi-flag-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001"
-            />
-          </svg>
-        </button>
+        <svg
+          *ngIf="saveChecked"
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          fill="red"
+          class="bi bi-bookmark"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"
+          />
+        </svg>
       </button>
     </div>
   </div>
   <div class="likes">
     <span class="user-img"> </span>
     <span class="likedby">
-      
-        <div>{{ likeCount }} likes</div>
-     
+      <div>{{ likeCount }} likes</div>
     </span>
   </div>
 
   <span class="timestamp">{{ getRelativeTime() }}</span>
+  <div class="post-caption" *ngIf="imgIsPresent">{{ caption }}</div>
+  <div class="new-comment">
+    <!-- <input type="text" placeholder="Add a comment" [(ngModel)]="comment" required minlength="1" #commentInput="ngModel" name="comment" class="comment-input">
+    <button type="button" [disabled]="commentInput.invalid" (mousedown)="submitComment()" class="post">Post</button>
+    <div class="comment-input"> -->
+    <input
+      type="text"
+      placeholder="Add a comment"
+      [(ngModel)]="comment"
+      required
+      minlength="1"
+      class="comment-input"
+    />
+    <button
+      type="button"
+      [disabled]="!comment"
+      (click)="submitComment()"
+      class="post"
+    >
+      Post
+    </button>
+  </div>
   <div
     class="comments"
     *ngIf="commentsWithUsername && commentsWithUsername.length > 0"
@@ -123,44 +142,4 @@
       <span class="comment-content">{{ comment.text }}</span>
     </span>
   </div>
-</div>
-<div class="post-caption" *ngIf="imgIsPresent">{{ caption }}</div>
-<div class="new-comment">
-  <!-- <button class="emoji">
-    <svg
-      aria-label="Emoji"
-      class="_8-yf5"
-      fill="#262626"
-      height="24"
-      viewBox="0 0 48 48"
-      width="24"
-    >
-      <path
-        d="M24 48C10.8 48 0 37.2 0 24S10.8 0 24 0s24 10.8 24 24-10.8 24-24 24zm0-45C12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21S35.6 3 24 3z"
-      ></path>
-      <path
-        d="M34.9 24c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5zm-21.8 0c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zM24 37.3c-5.2 0-8-3.5-8.2-3.7-.5-.6-.4-1.6.2-2.1.6-.5 1.6-.4 2.1.2.1.1 2.1 2.5 5.8 2.5 3.7 0 5.8-2.5 5.8-2.5.5-.6 1.5-.7 2.1-.2.6.5.7 1.5.2 2.1 0 .2-2.8 3.7-8 3.7z"
-      ></path>
-    </svg>
-  </button> -->
-  <!-- <input type="text" placeholder="Add a comment" [(ngModel)]="comment" required minlength="1" #commentInput="ngModel" name="comment" class="comment-input">
-  <button type="button" [disabled]="commentInput.invalid" (mousedown)="submitComment()" class="post">Post</button>
-  <div class="comment-input"> -->
-  <input
-    type="text"
-    placeholder="Add a comment"
-    [(ngModel)]="comment"
-    required
-    minlength="1"
-    name="comment"
-    class="comment-input"
-  />
-  <button
-    type="button"
-    [disabled]="!comment"
-    (click)="submitComment()"
-    class="post"
-  >
-    Post
-  </button>
 </div>
