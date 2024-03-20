@@ -12,12 +12,14 @@ export class StoryService {
 
   constructor(private http: HttpClient) {}
 
-  // getStories(): Observable<Story[]> {
-  //   const headers = new HttpHeaders({
-  //     Authorization: `Token ${this.auth_token}`, // Include the token in the Authorization header
-  //   });
-  //   return this.http.get<Story[]>(this.apiUrl, { headers });
-  // }
+  getStories(): Observable<Story[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Token ${this.auth_token}`, // Include the token in the Authorization header
+    });
+    const stories = this.http.get<Story[]>(this.apiUrl, { headers });
+    console.log(stories);
+    return stories;
+  }
 
   getValidStories(): Observable<Story[]> {
     const headers = new HttpHeaders({

@@ -114,7 +114,13 @@ export class PostFooterComponent implements OnInit {
     this.router.navigate(['/report', this.postId]);
   }
   submitComment() {
-    alert('Comment posted successfully!');
+    // alert('Comment posted successfully!');
+    Swal.fire({
+      title: 'Success!',
+      text: 'Comment posted successfully!',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
     // Assuming you have the postId available, replace 'postId' with the actual postId
     const postId = this.postId; // Replace with the actual post ID
     const userId = this.userId;

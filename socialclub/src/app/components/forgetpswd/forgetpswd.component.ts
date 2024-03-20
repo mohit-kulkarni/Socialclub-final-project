@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forgetpswd',
@@ -33,7 +34,12 @@ export class ForgetpswdComponent {
         this.otpSubmitted = true;
         this.userExist = true;
         console.log('user exist');
-        alert('OTP sent successfully')
+        Swal.fire({
+          title: 'Success!',
+          text: 'OTP sent successfully!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
       } else {
         this.userExist = false;
         // Handle error or display appropriate message

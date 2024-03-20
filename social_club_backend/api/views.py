@@ -292,11 +292,12 @@ def follower_count(request, user_id):
 
 class StoryListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = StorySerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         user = self.request.user
         user_id = user.id
+        # print(user.user)
         print("user------------->>", user.id)
         # friends = Friendship.objects.filter(Q(user1=user) | Q(user2=user))
         # friend_user_ids = list(friends.values_list('user1_id', flat=True)) + list(friends.values_list('user2_id', flat=True))
@@ -325,6 +326,7 @@ class StoryListCreateAPIView(generics.ListCreateAPIView):
             user_data = story_data.pop('user')  # Remove user data from story data
             story_data['user'] = user_data  # Add user data as a separate key
             serialized_data.append(story_data)
+            print('Serialised data__________________>>>>>', serialized_data)
         return Response(serialized_data)
 
 class StoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
