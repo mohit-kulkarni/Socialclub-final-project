@@ -43,6 +43,11 @@ const routes: Routes = [
         component: ProfileComponent,
         canActivate: [AuthGuard],
       },
+      // {
+      //   path: 'home/profile/:userId',
+      //   redirectTo: 'profile/:userId',
+      //   pathMatch: 'full',
+      // },
       { path: 'report/:id', component: ReportComponent },
     ],
   },
