@@ -9,7 +9,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ['id', 'user', 'username', 'email', 'profile_pic']  # Include only necessary fields
+        fields = ['id', 'user', 'username', 'email', 'profile_pic', 'fname', 'lname']  # Include only necessary fields
 
 
 

@@ -11,6 +11,7 @@ import {
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NewPostService } from '../../services/new-post.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-post',
@@ -105,21 +106,44 @@ export class NewPostComponent implements AfterViewInit {
     console.log(this.location);
 
     // Call the service to send the data to the Django backend
-    this.newPostService.postData(formData).subscribe(
-      (response) => {
-        console.log(response.message);
-        window.alert('Post created successfully!');
-        // Reset form fields on successful submission if needed
-        this.caption = '';
-        this.location = '';
-        this.mediaFiles = [];
-        this.mediaPreviews = [];
-      },
-      (error) => {
-        console.error(error);
-
-        this.errorMessage = 'Failed to add post. Please try again.';
+    // Display confirmation dialog
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to create this post?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Call the service to send the data to the Django backend
+        this.newPostService.postData(formData).subscribe(
+          (response) => {
+            console.log(response.message);
+            Swal.fire({
+              title: 'Success!',
+              text: 'Post created successfully!',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            });
+            // Reset form fields on successful submission if needed
+            this.caption = '';
+            this.location = '';
+            this.mediaFiles = [];
+            this.mediaPreviews = [];
+          },
+          (error) => {
+            console.error(error);
+            Swal.fire({
+              title: 'Error!',
+              text: 'Failed to add post. Please try again.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+            this.errorMessage = 'Failed to add post. Please try again.';
+          }
+        );
       }
-    );
+    });
   }
 }

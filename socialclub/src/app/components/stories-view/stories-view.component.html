@@ -1,7 +1,7 @@
 <!-- <p>stories-view works!</p> -->
 <!-- <h1>Story by {{ story.user.username }}</h1> -->
 <div class="insta__story">
-  <section class="insta__story_header">
+  <div class="insta__story_header">
     <div class="insta__story_lines">
       <div class="insta__story_line"></div>
       <div class="insta__story_line"></div>
@@ -16,16 +16,19 @@
         class="insta__story_icons"
         alt="icon"
       />
-
-      <span class="insta__story_username">
-        {{ story.user.username }}
-      </span>
+      <div class="insta__story_user-details">
+        <span class="insta__story_username">
+          {{ story.user.username }}
+        </span>
+        <span class="insta__story_timestamp">
+          {{ getRelativeTime(story.created_at) }}
+        </span>
+      </div>
     </div>
     <div class="insta__story_controls"></div>
-  </section>
-
-  <section class="insta__story_reply">
-    <div class="insta__story_input">reply...</div>
+  </div>
+  <div class="insta__story_reply">
+    <input type="text" class="insta__story_input" placeholder="reply..." />
     <svg
       color="#ffffff"
       fill="#ffffff"
@@ -64,13 +67,13 @@
         stroke-width="2"
       ></polygon>
     </svg>
-  </section>
+  </div>
 
-  <section class="insta__story_text">
+  <div class="insta__story_text">
     {{ story.caption }}
-  </section>
-  <section class="insta__story_post black-grad">
+  </div>
+  <div class="insta__story_post black-grad">
     <img *ngIf="story.image" [src]="generateImageLink(story.image)" />
     <video src="generateImageLink(story.video)"></video>
-  </section>
+  </div>
 </div>

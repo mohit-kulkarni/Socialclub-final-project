@@ -15,6 +15,7 @@ export class NavbarComponent {
   userImageSource: string = `http://localhost:8000/${sessionStorage.getItem(
     'profile_pic'
   )}`; // Replace with the actual default image path
+  loggedInUser = sessionStorage.getItem('userId');
 
   selectedItem: any;
   items: any[] = []; // Initialize the property

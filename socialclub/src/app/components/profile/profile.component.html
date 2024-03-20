@@ -1,13 +1,13 @@
 <div class="profile-container">
   <!-- Profile Image on the left -->
-  <img [src]="imageLink" alt="Profile Image" class="profile-image" />
+  <img [src]="user.profile_pic" alt="Profile Image" class="profile-image" />
 
   <!-- User Information, Followers, Following, and Posts -->
   <div class="profile-info">
     <div *ngIf="!isEditMode">
-      <h2>{{ user.name }}</h2>
+      <h2>{{ user.fname }} {{ user.lname }}</h2>
       <p>{{ user.email }}</p>
-      <button (click)="toggleEditMode()">Edit Profile</button>
+      <button *ngIf="isOwner" (click)="toggleEditMode()">Edit Profile</button>
     </div>
 
     <div *ngIf="isEditMode" class="profile-edit-form">
@@ -18,9 +18,11 @@
       <label for="email">Email:</label>
       <input type="email" id="email" [(ngModel)]="user.email" />
       <label for="profileImage">Profile Image:</label>
-      <input type="file" id="profileImage" (change)="onProfileImageChange($event)" />
-
-    
+      <input
+        type="file"
+        id="profileImage"
+        (change)="onProfileImageChange($event)"
+      />
 
       <button (click)="saveChanges()">Save Changes</button>
       <button (click)="toggleEditMode()">Cancel</button>
@@ -34,13 +36,15 @@
       </div> -->
 
       <div class="following">
-        <h3>Friends</h3>
-        <p>{{ user.following || 0 }}</p> <!-- Placeholder for following count -->
+        <h3>Followers</h3>
+        <p>{{ user.following || 0 }}</p>
+        <!-- Placeholder for following count -->
       </div>
 
       <div class="posts">
         <h3>Posts</h3>
-        <p>{{ user.posts || 0 }}</p> <!-- Placeholder for posts count -->
+        <p>{{ user.posts || 0 }}</p>
+        <!-- Placeholder for posts count -->
       </div>
     </div>
   </div>

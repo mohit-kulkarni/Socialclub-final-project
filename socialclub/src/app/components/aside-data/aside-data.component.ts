@@ -16,6 +16,9 @@ export class AsideDataComponent implements OnInit {
   users: User[] | any = []; // Initialize empty user array
   loggedInUser: string | null = sessionStorage.getItem('username');
   LoggedInEmail: string | null = sessionStorage.getItem('email');
+  fullName = `${sessionStorage.getItem('fname')} ${sessionStorage.getItem(
+    'lname'
+  )}`;
   // filteredUsers: any[];
 
   constructor(

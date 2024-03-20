@@ -44,6 +44,8 @@ export class TokenService {
       window.sessionStorage.setItem('profile_pic', userData.profile_pic);
       window.sessionStorage.setItem('dob', userData.dob);
       window.sessionStorage.setItem('email', userData.email);
+      window.sessionStorage.setItem('fname', userData.fname);
+      window.sessionStorage.setItem('lname', userData.lname);
     }
   }
 

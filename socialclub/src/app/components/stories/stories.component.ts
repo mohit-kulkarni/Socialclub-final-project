@@ -5,6 +5,7 @@ import { Story } from '../../interfaces/story';
 import { StoryService } from '../../services/story.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StoriesViewComponent } from '../stories-view/stories-view.component';
+import { StoriesNewComponent } from '../stories-new/stories-new.component';
 
 @Component({
   selector: 'app-stories',
@@ -62,6 +63,17 @@ export class StoriesComponent implements OnInit {
     dialogRef
       .afterClosed()
       .subscribe(() => console.log('The dialog was closed'));
+  }
+
+  openNewStoryModal() {
+    const dialogRef = this.dialog.open(StoriesNewComponent, {
+      width: '550px',
+      panelClass: 'custom-dialog-container',
+    });
+
+    dialogRef
+      .afterClosed()
+      .subscribe(() => console.log('New Story Dialog Closed.'));
   }
 
   generateImageLink(imageSource): string {

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Story } from '../../interfaces/story';
+import { formatDistanceToNow } from 'date-fns';
 
 @Component({
   selector: 'app-stories-view',
@@ -14,8 +15,12 @@ export class StoriesViewComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-    generateImageLink(imageSource): string {
+  generateImageLink(imageSource): string {
     return `http://localhost:8000${imageSource}`;
+  }
+
+  getRelativeTime(timestamp) {
+    return formatDistanceToNow(timestamp, { addSuffix: true });
   }
 
   ngOnInit(): void {

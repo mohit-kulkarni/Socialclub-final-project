@@ -1,0 +1,11 @@
+.story-container {
+  padding: 20px;
+  color: white;
+
+  .image-preview {
+    object-fit: cover;
+    img {
+    //   max-height: 300px;
+    }
+  }
+}

@@ -4,19 +4,6 @@
   <h2>New Post</h2>
   <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="caption">Caption:</label>
-      <textarea id="caption" name="caption" [(ngModel)]="caption" placeholder="Enter a nice caption"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="location">Location:</label>
-      <textarea
-        id="location"
-        name="location"
-        [(ngModel)]="location"
-        placeholder="e.g., City, State or Address"
-      ></textarea>
-    </div>
-    <div class="form-group">
       <label for="files">Select Files:</label>
       <input
         type="file"
@@ -54,6 +41,24 @@
           Unsupported file format: {{ media.url }}
         </div>
       </div>
+    </div>
+    <div class="form-group">
+      <label for="caption">Caption:</label>
+      <textarea
+        id="caption"
+        name="caption"
+        [(ngModel)]="caption"
+        placeholder="Enter a nice caption"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <textarea
+        id="location"
+        name="location"
+        [(ngModel)]="location"
+        placeholder="e.g., City, State or Address"
+      ></textarea>
     </div>
     <button type="submit">Post</button>
     <div *ngIf="errorMessage" class="error-message">

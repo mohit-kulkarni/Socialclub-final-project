@@ -2,17 +2,18 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { SearchService } from '../../services/search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'], 
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
   searchControl = new FormControl();
   searchResults: any[] = [];
 
-  constructor(private searchService: SearchService) {
+  constructor(private searchService: SearchService, private router: Router) {
     this.setupSearch();
   }
   // ngOnInit(){
@@ -26,16 +27,18 @@ export class SearchComponent {
     this.searchControl.valueChanges
       .pipe(
         debounceTime(300),
-        switchMap(query => this.searchService.searchUsers(query)),
-        map(results => this.filterResults(results)) // Filter the results
+        switchMap((query) => this.searchService.searchUsers(query)),
+        map((results) => this.filterResults(results)) // Filter the results
       )
-      .subscribe(filteredResults => {
+      .subscribe((filteredResults) => {
         this.searchResults = this.searchControl.value ? filteredResults : [];
       });
   }
 
   private filterResults(results: any[]): any[] {
     const query = this.searchControl.value.toLowerCase();
-    return results.filter(result => result.username.toLowerCase().includes(query));
+    return results.filter((result) =>
+      result.username.toLowerCase().includes(query)
+    );
   }
 }

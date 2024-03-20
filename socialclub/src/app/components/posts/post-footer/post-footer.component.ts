@@ -8,6 +8,7 @@ import { User } from '../../../interfaces/user';
 import { PostService } from '../../../services/post.service';
 import { BookmarkService } from '../../../services/bookmark.service';
 import { formatDistanceToNow } from 'date-fns';
+import Swal from 'sweetalert2';
 
 CommentService;
 @Component({
@@ -164,12 +165,23 @@ export class PostFooterComponent implements OnInit {
     this.bookmarkService.bookmarkPost(this.postId, this.userId).subscribe(
       (response) => {
         console.log('Post bookmarked successfully:', response);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Post bookmarked successfully!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
         // alert(`Bookmarked Successfully!!`);
         // Handle success (e.g., show a success message)
       },
       (error) => {
         console.error('Error bookmarking post:', error);
-        alert(`Post already bookmarked!`);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Post already bookmarked!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
         // Handle error (e.g., show an error message)
       }
     );

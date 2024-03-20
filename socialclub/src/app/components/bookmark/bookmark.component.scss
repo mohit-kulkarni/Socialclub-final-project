@@ -1,36 +1,58 @@
 .card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    // margin-bottom: 20px;
-    overflow: hidden;
-    max-width: 50%;
-    margin-top :20px;
-  }
-  
-  .card-header, .card-footer {
-    padding: 16px;
-    color: #333;
-    width:100%
-  }
-  
-  .card-body {
-    padding: 0;
-  }
-  
-  .post-image, .post-video {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .post-image img, .post-video video {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .post-video video {
-    object-fit: cover;
-  }
-  
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  // margin-bottom: 20px;
+  overflow: hidden;
+  max-width: 50%;
+  margin-top: 20px;
+}
+
+.card-header,
+.card-footer {
+  padding: 16px;
+  color: #333;
+  width: 100%;
+}
+
+.card-body {
+  padding: 0;
+  object-fit: cover;
+}
+
+.post-image,
+.post-video {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+}
+
+.post-image img,
+.post-video video {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-video video {
+  object-fit: cover;
+}
+
+.card-container {
+  padding: 30px;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.post {
+  width: calc(50% - 10px); // Two columns layout with gap
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 100%;
+}

@@ -1,1 +1,16 @@
-<p>stories-new works!</p>
+<div class="story-container">
+
+    <h2>Add Story</h2>
+    
+    <input
+    type="file"
+  id="media"
+  (change)="onMediaChange($event)"
+  accept="image/*, video/*"
+  required
+/>
+<div class="image-preview" *ngIf="mediaFile">
+  <img [src]="imagePreview" alt="Image Preview"  />
+</div>
+
+</div>

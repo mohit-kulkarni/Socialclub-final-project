@@ -2,10 +2,10 @@
   <div class="user-infos">
     <img [src]="userImageSource" alt="user IMG" class="user-img" />
     <div class="user-name-infos">
-      <span class="user-username">{{ loggedInUser }}</span>
+      <span class="user-username">{{ fullName }}</span>
       <span class="user-name">
         <small>
-          {{ LoggedInEmail }}
+          {{ loggedInUser }}
         </small>
       </span>
     </div>
@@ -23,7 +23,7 @@
           class="user-suggestion-avatar"
         />
         <div class="user-suggestion-data">
-          <span class="user-username">{{ user.username }}</span>
+          <span class="user-username">{{ user.fname }} {{ user.lname }}</span>
           <span class="user-info">Suggestion for you</span>
         </div>
         <button class="btn" (click)="sendFollowRequest(user.user)">
