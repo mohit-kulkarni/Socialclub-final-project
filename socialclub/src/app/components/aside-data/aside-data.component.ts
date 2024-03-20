@@ -4,6 +4,7 @@ import { SendRequestService } from '../../services/send-request.service';
 import { User } from '../../interfaces/user';
 import { Observable } from 'rxjs';
 import { FriendRequestService } from '../../services/friend-request.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-aside-data',
@@ -87,13 +88,29 @@ export class AsideDataComponent implements OnInit {
           // Remove the user from the list after sending the friend request
           this.users.splice(index, 1);
           console.log('Friend request sent successfully');
-          alert('Friend request sent successfully');
+          Swal.fire({
+            title: 'Success!',
+            text: 'Follow Request sent Successfully!',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
         } else {
-          console.error('User not found in the list');
+          Swal.fire({
+            title: 'Error!',
+            text: 'User not Found!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
         }
       },
       (error) => {
         console.error('Error sending friend request:', error);
+        Swal.fire({
+          title: 'Error!',
+          text: `Error sending friend request!, ${error}`,
+          icon: 'warning',
+          confirmButtonText: 'OK',
+        });
       }
     );
   }

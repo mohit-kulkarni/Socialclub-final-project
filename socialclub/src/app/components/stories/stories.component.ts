@@ -40,7 +40,7 @@ export class StoriesComponent implements OnInit {
   // }
 
   fetchStories(): void {
-    this.storyService.getValidStories().subscribe(
+    this.storyService.getStories().subscribe(
       (stories) => {
         this.stories = stories;
         console.log(`Stories:`);
