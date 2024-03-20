@@ -35,17 +35,34 @@
         <p>{{ user.followers || 0 }}</p> 
       </div> -->
 
-      <div class="following">
+      
+      <!-- <div class="following">
         <h3>Followers</h3>
         <p>{{ user.following || 0 }}</p>
-        <!-- Placeholder for following count -->
+      </div> -->
+
+      <div class="following">
+        <h3>Followers</h3>
+        <p>{{ followingCount }}</p>
+      </div>
+      
+      <div class="following">
+        <h3>Following</h3>
+        <p>{{ followerCount }}</p>
       </div>
 
-      <div class="posts">
+      
+      <!-- <div class="posts">
         <h3>Posts</h3>
         <p>{{ user.posts || 0 }}</p>
-        <!-- Placeholder for posts count -->
-      </div>
+      </div> -->
+
+      <!-- <div class="posts">
+        <h3>Posts</h3>
+        <p>{{ postCount }}</p>
+      </div> -->
+
+
     </div>
   </div>
 </div>

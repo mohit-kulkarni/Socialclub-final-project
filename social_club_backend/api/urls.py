@@ -48,7 +48,12 @@ urlpatterns=[
 
     # path('SaveFile$', views.SaveFile)
     path('stories/', StoryListCreateAPIView.as_view(), name='story-list-create'),
-    path('stories/<int:pk>/', StoryRetrieveUpdateDestroyAPIView.as_view(), name='story-detail')
+    path('stories/<int:pk>/', StoryRetrieveUpdateDestroyAPIView.as_view(), name='story-detail'),
+    path('following_count/<int:user_id>/', following_count, name='following_count'),
+    path('follower_count/<int:user_id>/', follower_count, name='follower_count'),
+    # path('post_count/<int:user_id>/', post_count, name='post_count'),
+
 ]
 urlpatterns += router.urls
 # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

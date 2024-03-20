@@ -13,7 +13,9 @@ export class ProfileComponent implements OnInit {
   isOwner = false;
   user: any;
   imageLink;
-
+  followingCount: number = 0;
+  followerCount: number = 0;
+  postCount: number =0;
   isEditMode = false;
   profileImageFile: File | null = null;
 
@@ -51,6 +53,26 @@ export class ProfileComponent implements OnInit {
           console.error('Error fetching user data:', error);
         }
       );
+
+      this.profileService.getFollowingCount(userIdFromUrl).subscribe(
+        data => {
+          this.followingCount = data.following_count;
+        },
+        error => {
+          console.error('Error fetching follower count:', error);
+        }
+      );
+
+      this.profileService.getFollowerCount(userIdFromUrl).subscribe(
+        data => {
+          this.followerCount = data.follower_count;
+        },
+        error => {
+          console.error('Error fetching follower count:', error);
+        }
+      );
+
+
     });
   }
 

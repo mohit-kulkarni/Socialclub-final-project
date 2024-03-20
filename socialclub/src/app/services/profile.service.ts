@@ -19,4 +19,14 @@ export class ProfileService {
     console.log(userData, 'userData');
     return this.http.patch<any>(`${this.apiUrl}${userId}/`, userData);
   }
+
+  getFollowerCount(userId: string): Observable<any> {
+    return this.http.get<any>(`http://localhost:8000/api/follower_count/${userId}/`);
+  }
+
+  getFollowingCount(userId: string): Observable<any> {
+    return this.http.get<any>(`http://localhost:8000/api/following_count/${userId}/`);
+  }
+
+  
 }

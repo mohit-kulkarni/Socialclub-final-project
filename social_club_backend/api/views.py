@@ -276,6 +276,20 @@ class PostDetailView(View):
 #         # return stories
 #         return Story.objects.filter(user_id__in=friend_user_ids)
 
+##################### following count ###############################
+
+def following_count(request, user_id):
+    # Assuming 'user_id' is the ID of the user you want to check followers for
+    count = Friendship.objects.filter(user2=user_id).count()
+    return JsonResponse({'following_count': count})
+
+def follower_count(request, user_id):
+    # Assuming 'user_id' is the ID of the user you want to check followers for
+    count = Friendship.objects.filter(user1=user_id).count()
+    return JsonResponse({'follower_count': count})
+
+
+
 class StoryListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = StorySerializer
     permission_classes = [IsAuthenticated]
